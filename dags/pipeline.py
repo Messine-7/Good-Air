@@ -18,7 +18,8 @@ with DAG(
         api_version='auto',
         auto_remove=True,
         docker_url='unix://var/run/docker.sock',
-        network_mode='data-pipeline'
+        network_mode='bridge',
+        mount_tmp_dir=False
     )
 
     dbt_task = DockerOperator(
@@ -29,7 +30,8 @@ with DAG(
         api_version='auto',
         auto_remove=True,
         docker_url='unix://var/run/docker.sock',
-        network_mode='data-pipeline'
+        network_mode='bridge',
+        mount_tmp_dir=False
     )
 
     elt_task >> dbt_task
