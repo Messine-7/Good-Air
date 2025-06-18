@@ -98,6 +98,7 @@ services:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__WEBSERVER__SECRET_KEY: q4/E(<?MXGl70r5J_xg$9Jgp-$qrjO
     volumes:
       - ./dags:/opt/airflow/dags
       - /var/run/docker.sock:/var/run/docker.sock
@@ -115,6 +116,7 @@ services:
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__WEBSERVER__SECRET_KEY: q4/E(<?MXGl70r5J_xg$9Jgp-$qrjO
     volumes:
       - ./dags:/opt/airflow/dags
       - /var/run/docker.sock:/var/run/docker.sock
