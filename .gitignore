@@ -1,0 +1,34 @@
+# Airflow logs
+logs/
+*/logs/
+**/logs/
+
+# Dossiers temporaires
+tmp/
+.airflow/
+airflow.db
+airflow-webserver.pid
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# Docker & environnement
+.env
+*.env
+*.bak
+*.swp
+
+# Compiled files
+*.egg-info/
+.eggs/
+dist/
+build/
