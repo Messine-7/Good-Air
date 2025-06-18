@@ -18,7 +18,8 @@ with DAG(
         api_version='auto',
         auto_remove=True,
         docker_url='unix://var/run/docker.sock',
-        network_mode='data-pipeline'
+        network_mode='data-pipeline',
+        volumes=['/home/airflow/elt:/app']
     )
 
     dbt_task = DockerOperator(
