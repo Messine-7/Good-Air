@@ -1,5 +1,6 @@
 from airflow import DAG
 from airflow.providers.docker.operators.docker import DockerOperator
+from docker.types import Mount
 from datetime import datetime
 
 with DAG(
@@ -12,14 +13,15 @@ with DAG(
 
     elt_task = DockerOperator(
         task_id='run_elt',
-        image='elt',  # Nom du service ou image Docker
+        image='elt:latest',  # Nom du service ou image Docker
         container_name='elt_task_container',
         command='python /app/script.py',
         api_version='auto',
         auto_remove=True,
         docker_url='unix://var/run/docker.sock',
         network_mode='data-pipeline',
-        volumes=['/home/airflow/elt:/app']
+        mounts=[Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/elt", target="/app", type="bind")],
+        mount_tmp_dir=False 
     )
 
     dbt_task = DockerOperator(
