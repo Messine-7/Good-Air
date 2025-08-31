@@ -1,6 +1,7 @@
-FROM python:3.9-slim
+# Base Python
+FROM python:3.11-slim
 
-# Ajout des dépendances système requises pour compiler et installer certains paquets
+# Dépendances système nécessaires
 RUN apt-get update && apt-get install -y \
     build-essential \
     libssl-dev \
@@ -8,18 +9,18 @@ RUN apt-get update && apt-get install -y \
     gcc \
     git \
     curl \
-    && rm -rf /var/lib/apt/lists/*\
-    pip install -r requirements.txt
+    && rm -rf /var/lib/apt/lists/*
 
-# Création du dossier pour le script
+# Création du dossier de travail
 WORKDIR /app
 
-# Copie du script
-COPY ./script.py /app/script.py
+# Copie des fichiers de dépendances et scripts
+COPY requirements.txt /app/requirements.txt
+COPY . /app
 
 # Installation des packages Python
 RUN pip install --upgrade pip \
-    && pip install pandas snowflake-connector-python
+    && pip install --no-cache-dir -r /app/requirements.txt
 
-# Commande par défaut
+# Commande par défaut (peut être remplacée par Airflow DockerOperator)
 CMD ["python", "script.py"]
