@@ -1,23 +1,23 @@
-try : 
-    import requests
-    import pandas as pd
-    import json
-    import numpy as np
-    from datetime import datetime, timezone
-    import snowflake.connector
-    import os
-    from dotenv import load_dotenv
-except :
-    print("Error import lib")
+
+import requests
+import pandas as pd
+import json
+import numpy as np
+from datetime import datetime, timezone
+import snowflake.connector
+import os
+from dotenv import load_dotenv
 
 load_dotenv()
 
 # Configuration des APIs
-OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')
+AQICN_API_KEY = os.getenv('AQICN_API_KEY')
+
 
 #SNOWFLAKE
 ACOUNT_SNOWFLAKE = os.getenv('ACOUNT_SNOWFLAKE')
 PASSWORD_SNOWFLAKE = os.getenv('PASSWORD_SNOWFLAKE')
+
 
 conn = snowflake.connector.connect(
     user="LOUK",
@@ -53,9 +53,6 @@ CITIES = [
     ("Villeurbanne", 45.7719, 4.8902)
 ]
 
-# Paramètres
-units = "metric"
-lang = "fr"
 
 #Array pour recevoir les reponse, un element pour une ville
 data_cities = []
@@ -68,7 +65,7 @@ for city in CITIES :
 
     # 🔗 URL One Call 2.5
     url = (
-        f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPENWEATHER_API_KEY}&units=metric&lang=fr"
+        f"https://api.waqi.info/feed/{name_city}/?token={AQICN_API_KEY}"
     )
 
     response = requests.get(url)
@@ -77,6 +74,7 @@ for city in CITIES :
         response.raise_for_status()  
         data = response.json()
         data_cities.append(data)
+        
     except requests.exceptions.HTTPError as http_err:
         print(f" Erreur HTTP : {response.status_code} - {http_err}")
     except requests.exceptions.RequestException as req_err:
@@ -84,15 +82,13 @@ for city in CITIES :
     except ValueError:
         print(" Réponse reçue mais le JSON est invalide.")
 
-
-#Envois vers sbnowflake
-#convertion de la data en json
+#convertion de al data en json
 json_data = json.dumps(data_cities)
 
 try:
     # Insertion dans la table
     cur.execute("""
-        INSERT INTO weather_api(raw_json) 
+        INSERT INTO aqicn_api(raw_json) 
         SELECT PARSE_JSON(%s)
     """, (json_data,))
     
@@ -105,3 +101,4 @@ except Exception as e:
 
 finally:
     cur.close()
+    

@@ -27,6 +27,23 @@ with DAG(
         )],
         mount_tmp_dir=False
     )
+
+    aqicn_task = DockerOperator(
+        task_id='run_aqicn_extract',
+        image='elt:latest',  # même image que ton script.py
+        container_name='aqicn_task_container',
+        command='python /app/aqicn_extract.py',
+        api_version='auto',
+        auto_remove=True,
+        docker_url='unix://var/run/docker.sock',
+        network_mode='data-pipeline',
+        mounts=[Mount(
+            source="D:/DATA/2025-06-01_MSPR_1/Good-Air/elt",
+            target="/app",
+            type="bind"
+        )],
+        mount_tmp_dir=False
+    )    
     
     elt_task = DockerOperator(
         task_id='run_elt',

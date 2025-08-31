@@ -2,3 +2,4 @@ pandas
 requests
 snowflake
 dotenv
+dbt-core dbt-snowflake
