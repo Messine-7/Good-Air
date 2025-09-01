@@ -45,15 +45,24 @@ with DAG(
     
     dbt_task = DockerOperator(
         task_id='open_weather_dbt_transform',
-        image='dbt:latest',  # nom de ton image buildée
+        image='ghcr.io/dbt-labs/dbt-snowflake:latest',  # image officielle dbt-snowflake
         container_name='dbt_task_container',
-        command='dbt run --project-dir /app/dbt_project --profiles-dir /app/dbt_project',
+        command='run --project-dir /app/dbt_project --profiles-dir /root/.dbt',
         api_version='auto',
         auto_remove=True,
         docker_url='unix://var/run/docker.sock',
         network_mode='data-pipeline',
         mounts=[
-            Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/dbt/dbt_project",target="/app/dbt_project",type="bind"),
+            Mount(
+                source="D:/DATA/2025-06-01_MSPR_1/Good-Air/dbt/dbt_project",
+                target="/app/dbt_project",
+                type="bind"
+            ),
+            Mount(
+                source="D:/DATA/2025-06-01_MSPR_1/Good-Air/dbt",
+                target="/root/.dbt",
+                type="bind"
+            ),
         ],
         mount_tmp_dir=False
     )
