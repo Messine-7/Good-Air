@@ -10,7 +10,7 @@ try :
 except :
     print("Error import lib")
 
-load_dotenv()
+load_dotenv('/app/.env')
 
 # Configuration des APIs
 OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')

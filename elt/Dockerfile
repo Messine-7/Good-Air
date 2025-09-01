@@ -21,6 +21,3 @@ COPY . /app
 # Installation des packages Python
 RUN pip install --upgrade pip \
     && pip install --no-cache-dir -r /app/requirements.txt
-
-# Commande par défaut (peut être remplacée par Airflow DockerOperator)
-CMD ["python", "script.py"]

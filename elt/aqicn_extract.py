@@ -8,7 +8,7 @@ import snowflake.connector
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv('/app/.env')
 
 # Configuration des APIs
 AQICN_API_KEY = os.getenv('AQICN_API_KEY')

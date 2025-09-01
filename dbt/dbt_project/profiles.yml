@@ -1,0 +1,14 @@
+dbt_project:        # <- ce nom doit correspondre à 'name:' dans ton dbt_project.yml
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "ZQQYYBI-EM82872"   # ex: abcd-xy12345
+      user: "LouK"
+      password: "Snowflake_08230!"
+      role: "ACCOUNTADMIN"
+      warehouse: "COMPUTE_WH"
+      database: GOOD_AIR           # ta base brute
+      schema: TRANSFORMED          # schema de sortie dbt
+      threads: 4
+      client_session_keep_alive: false

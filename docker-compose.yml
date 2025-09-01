@@ -139,6 +139,7 @@ services:
 
   dbt:
     build: ./dbt
+    image: dbt:latest
     container_name: dbt_container
     networks:
       - data-pipeline
