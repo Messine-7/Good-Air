@@ -3,6 +3,7 @@ from airflow.providers.docker.operators.docker import DockerOperator
 from docker.types import Mount
 from datetime import datetime
 
+
 with DAG(
     dag_id='pipeline_elt_docker',
     start_date=datetime(2025, 8, 31),
@@ -21,7 +22,7 @@ with DAG(
         docker_url='unix://var/run/docker.sock',
         network_mode='data-pipeline',
         mounts=[
-            Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/elt", target="/app", type="bind"),
+            Mount(source=f"D:/DATA/2025-06-01_MSPR_1/Good-Air/elt", target="/app", type="bind"),
             Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/.env", target="/app/.env", type="bind"),
             ],
         mount_tmp_dir=False

@@ -5,76 +5,66 @@ WITH raw AS (
     FROM RAW.AQICN_API
 ),
 
--- 1. Infos principales
-city as (
-    select
-        j:data.idx::int as idx,
-        j:data.city.name::string as city_name,
-        j:data.city.url::string as city_url,
-        j:data.city.geo[0]::float as latitude,
-        j:data.city.geo[1]::float as longitude,
-        j:data.aqi::int as aqi,
-        j:data.dominentpol::string as dominent_pol,
-        j:data.time.iso::timestamp_tz as measurement_time
-    from source
+flattened_array AS (
+    -- flatten chaque élément du tableau JSON
+    SELECT
+        f.value AS city_data
+    FROM raw,
+    LATERAL FLATTEN(input => data) f
 ),
 
--- 2. Mesures instantanées (iaqi)
-iaqi as (
-    select
-        j:data.idx::int as idx,
-        k.key::string as pollutant,
-        k.value:v::float as value
-    from source,
-    lateral flatten(input => j:data.iaqi) k
-),
+flattened AS (
+    SELECT
+        -- identifiant unique de la station
+        TRY_TO_NUMBER(city_data:data:idx::string) AS station_id,
 
--- 3. Prévisions (forecast.daily)
-forecast as (
-    select
-        j:data.idx::int as idx,
-        p.key::string as pollutant,
-        f.value:day::date as jour,
-        f.value:avg::int as avg_value,
-        f.value:max::int as max_value,
-        f.value:min::int as min_value
-    from source,
-    lateral flatten(input => j:data.forecast.daily) p,
-    lateral flatten(input => p.value) f
-),
+        -- index / temps
+        TRY_TO_NUMBER(city_data:data:time:v::string) AS dt,
+        TO_TIMESTAMP_NTZ(TRY_TO_NUMBER(city_data:data:time:v::string)) AS dt_utc,
+        CONVERT_TIMEZONE('UTC', 'Europe/Paris', TO_TIMESTAMP_NTZ(TRY_TO_NUMBER(city_data:data:time:v::string))) AS dt_paris,
 
--- 4. Attributions (sources)
-attributions as (
-    select
-        j:data.idx::int as idx,
-        a.value:name::string as source_name,
-        a.value:url::string as source_url,
-        a.value:logo::string as source_logo
-    from source,
-    lateral flatten(input => j:data.attributions) a
+        -- métadonnées principales
+        city_data:status::string AS status,
+        TRY_TO_NUMBER(city_data:data:aqi::string) AS aqi,
+        city_data:data:dominentpol::string AS dominent_pol,
+
+        -- ville
+        city_data:data:city:name::string AS city_name,
+        city_data:data:city:url::string AS city_url,
+        city_data:data:city:location::string AS city_location,
+        TRY_TO_NUMBER(city_data:data:city:geo[0]::string) AS lat,
+        TRY_TO_NUMBER(city_data:data:city:geo[1]::string) AS lon,
+
+        -- indicateurs (IAQI)
+        TRY_TO_NUMBER(city_data:data:iaqi:co:v::string) AS iaqi_co,
+        TRY_TO_NUMBER(city_data:data:iaqi:no2:v::string) AS iaqi_no2,
+        TRY_TO_NUMBER(city_data:data:iaqi:o3:v::string) AS iaqi_o3,
+        TRY_TO_NUMBER(city_data:data:iaqi:pm10:v::string) AS iaqi_pm10,
+        TRY_TO_NUMBER(city_data:data:iaqi:pm25:v::string) AS iaqi_pm25,
+        TRY_TO_NUMBER(city_data:data:iaqi:so2:v::string) AS iaqi_so2,
+        TRY_TO_NUMBER(city_data:data:iaqi:t:v::string) AS iaqi_temp,
+        TRY_TO_NUMBER(city_data:data:iaqi:h:v::string) AS iaqi_humidity,
+        TRY_TO_NUMBER(city_data:data:iaqi:p:v::string) AS iaqi_pressure,
+        TRY_TO_NUMBER(city_data:data:iaqi:w:v::string) AS iaqi_wind,
+        TRY_TO_NUMBER(city_data:data:iaqi:wg:v::string) AS iaqi_wind_gust,
+
+        -- infos horaires
+        city_data:data:time:s::string AS time_str,
+        city_data:data:time:tz::string AS tz_offset,
+        city_data:data:time:iso::string AS time_iso
+
+    FROM flattened_array
 )
 
--- Final : une seule table à plat
-select
-    c.idx,
-    c.city_name,
-    c.city_url,
-    c.latitude,
-    c.longitude,
-    c.aqi,
-    c.dominent_pol,
-    c.measurement_time,
-    i.pollutant as iaqi_pollutant,
-    i.value as iaqi_value,
-    f.pollutant as forecast_pollutant,
-    f.jour as forecast_day,
-    f.avg_value,
-    f.max_value,
-    f.min_value,
-    a.source_name,
-    a.source_url,
-    a.source_logo
-from city c
-left join iaqi i on c.idx = i.idx
-left join forecast f on c.idx = f.idx
-left join attributions a on c.idx = a.idx
+SELECT *
+FROM flattened
+QUALIFY ROW_NUMBER() OVER (PARTITION BY station_id, dt ORDER BY dt_utc DESC) = 1
+
+{% if is_incremental() %}
+-- Ne charge que les nouvelles mesures
+WHERE dt NOT IN (
+    SELECT DISTINCT dt
+    FROM {{ this }}
+    WHERE station_id = flattened.station_id
+)
+{% endif %}

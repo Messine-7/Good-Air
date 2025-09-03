@@ -6,9 +6,7 @@ WITH raw AS (
 ),
 
 flattened_array AS (
-    -- flatten chaque élément du tableau JSON
-    SELECT
-        f.value AS city_data
+    SELECT f.value AS city_data
     FROM raw,
     LATERAL FLATTEN(input => data) f
 ),
@@ -74,4 +72,14 @@ flattened AS (
     FROM flattened_array
 )
 
-SELECT * FROM flattened
+SELECT *
+FROM flattened
+QUALIFY ROW_NUMBER() OVER (PARTITION BY city_id, dt ORDER BY dt_utc DESC) = 1
+
+{% if is_incremental() %}
+  -- Ne charge que les nouvelles mesures par ville + dt
+  AND (city_id, dt) NOT IN (
+      SELECT city_id, dt
+      FROM {{ this }}
+  )
+{% endif %}
