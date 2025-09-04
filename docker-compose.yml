@@ -155,6 +155,25 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     networks:
       - data-pipeline
+  
+  # ✅ Pushgateway pour recevoir les métriques depuis les conteneurs éphémères
+  pushgateway:
+    image: prom/pushgateway
+    container_name: pushgateway
+    ports:
+      - "9091:9091"
+    networks:
+      - data-pipeline
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - data-pipeline
 
 networks:
   data-pipeline:
