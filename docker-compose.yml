@@ -137,8 +137,17 @@ services:
     networks:
       - data-pipeline
 
+  etl:
+    build: ./etl
+    image: etl:latest
+    container_name: etl_container
+    networks:
+      - data-pipeline
+    stdin_open: true
+    tty: true
+
   dbt:
-    build: ./dbt
+    image: ghcr.io/dbt-labs/dbt-snowflake:latest   
     container_name: dbt_container
     networks:
       - data-pipeline
@@ -164,3 +173,4 @@ networks:
 volumes:
   grafana-storage:
   postgres-db-volume:
+  etl-data:
