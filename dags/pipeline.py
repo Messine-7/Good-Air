@@ -22,8 +22,8 @@ with DAG(
         docker_url='unix://var/run/docker.sock',
         network_mode='data-pipeline',
         mounts=[
-            Mount(source=f"D:/DATA/2025-06-01_MSPR_1/Good-Air/elt", target="/app", type="bind"),
-            Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/.env", target="/app/.env", type="bind"),
+            Mount(source=f"C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/elt", target="/app", type="bind"),
+            Mount(source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/.env", target="/app/.env", type="bind"),
             ],
         mount_tmp_dir=False
     )
@@ -38,8 +38,8 @@ with DAG(
         docker_url='unix://var/run/docker.sock',
         network_mode='data-pipeline',
         mounts=[
-            Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/elt", target="/app", type="bind"),
-            Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/.env", target="/app/.env", type="bind"),
+            Mount(source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/elt", target="/app", type="bind"),
+            Mount(source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/.env", target="/app/.env", type="bind"),
             ],
         mount_tmp_dir=False
     )    
@@ -55,12 +55,12 @@ with DAG(
         network_mode='data-pipeline',
         mounts=[
             Mount(
-                source="D:/DATA/2025-06-01_MSPR_1/Good-Air/dbt/dbt_project",
+                source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/dbt/dbt_project",
                 target="/app/dbt_project",
                 type="bind"
             ),
             Mount(
-                source="D:/DATA/2025-06-01_MSPR_1/Good-Air/dbt",
+                source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/dbt",
                 target="/root/.dbt",
                 type="bind"
             ),
