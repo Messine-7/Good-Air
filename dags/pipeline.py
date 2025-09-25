@@ -66,6 +66,31 @@ with DAG(
             ),
         ],
         mount_tmp_dir=False
+
     )
 
     weather_task >>  dbt_task
+    
+with DAG(
+    dag_id='pipeline_etl_docker',
+    start_date=datetime(2025, 8, 31),
+    schedule_interval = "0 0 1,15 * *",  # 1er et 15 du mois à minuit
+    catchup=False,
+    tags=['etl']
+) as dag:
+
+    etl_task = DockerOperator(
+        task_id='etl_scrap_load',
+        image='etl:latest',  
+        container_name='elt_task_container',
+        command='python /app/scrap_load_hubeau.py',
+        api_version='auto',
+        auto_remove=True,
+        docker_url='unix://var/run/docker.sock',
+        network_mode='data-pipeline',
+        mounts=[
+            Mount(source=f"D:/DATA/2025-06-01_MSPR_1/Good-Air/etl", target="/app", type="bind"),
+            Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/.env", target="/app/.env", type="bind"),
+            ],
+        mount_tmp_dir=False
+    )
