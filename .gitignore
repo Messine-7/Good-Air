@@ -1,2 +1,2 @@
 venv
-dags\__pycache__
+**/__pycache__/

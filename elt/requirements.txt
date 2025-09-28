@@ -2,3 +2,4 @@ pandas
 requests
 snowflake
 dotenv
+prometheus-client
