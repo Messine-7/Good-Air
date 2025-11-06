@@ -16,11 +16,12 @@ AQICN_API_KEY = os.getenv('AQICN_API_KEY')
 
 #SNOWFLAKE
 ACOUNT_SNOWFLAKE = os.getenv('ACOUNT_SNOWFLAKE')
+USER_SNOWFLAKE = os.getenv('USER_SNOWFLAKE')
 PASSWORD_SNOWFLAKE = os.getenv('PASSWORD_SNOWFLAKE')
 
 
 conn = snowflake.connector.connect(
-    user="LOUK",
+    user=USER_SNOWFLAKE,
     password=PASSWORD_SNOWFLAKE,
     account=ACOUNT_SNOWFLAKE,
     warehouse="COMPUTE_WH",
