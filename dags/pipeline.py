@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 
-load_dotenv('/app/.env')
+load_dotenv('/opt/airflow/.env')
 
 # Configuration des APIs
 FOLDER_PATH = os.getenv('FOLDER_PATH')

@@ -3,12 +3,12 @@ dbt_project:        # <- ce nom doit correspondre à 'name:' dans ton dbt_projec
   outputs:
     dev:
       type: snowflake
-      account: "ZQQYYBI-EM82872"   # ex: abcd-xy12345
-      user: "LouK"
-      password: "Snowflake_08230!"
+      account: "VUZNAWR-IW20193"
+      user: "GUILLAUME"
+      password: "!Snowflake2025"
       role: "ACCOUNTADMIN"
       warehouse: "COMPUTE_WH"
-      database: GOOD_AIR           # ta base brute
+      database: GOOD_AIR           # base brute
       schema: TRANSFORMED          # schema de sortie dbt
       threads: 4
       client_session_keep_alive: false

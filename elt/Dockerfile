@@ -1,6 +1,9 @@
 # Base Python
 FROM python:3.11-slim
 
+# Installation des certificats SSL pour éviter les erreurs HTTPS
+RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
+
 # Dépendances système nécessaires
 RUN apt-get update && apt-get install -y \
     build-essential \

@@ -101,6 +101,7 @@ services:
       AIRFLOW__WEBSERVER__SECRET_KEY: "my-super-secret-key"
     volumes:
       - ./dags:/opt/airflow/dags
+      - ./.env:/opt/airflow/.env
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8080:8080"
@@ -119,6 +120,7 @@ services:
       AIRFLOW__WEBSERVER__SECRET_KEY: "my-super-secret-key"
     volumes:
       - ./dags:/opt/airflow/dags
+      - ./.env:/opt/airflow/.env
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - data-pipeline
@@ -150,6 +152,8 @@ services:
     container_name: dbt_container
     networks:
       - data-pipeline
+    env_file:
+      - ./.env
 
   grafana:
     image: grafana/grafana

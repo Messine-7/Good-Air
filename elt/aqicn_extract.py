@@ -1,25 +1,58 @@
-
+import socket
+import ssl
 import requests
-import pandas as pd
 import json
-import numpy as np
-from datetime import datetime, timezone
-import snowflake.connector
 import os
+import snowflake.connector
+from datetime import datetime
 from dotenv import load_dotenv
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+from urllib3.poolmanager import PoolManager
 
+# ===============================================================
+# ✅ Chargement des variables d’environnement
+# ===============================================================
 load_dotenv('/app/.env')
 
-# Configuration des APIs
 AQICN_API_KEY = os.getenv('AQICN_API_KEY')
-
-
-#SNOWFLAKE
 ACOUNT_SNOWFLAKE = os.getenv('ACOUNT_SNOWFLAKE')
 USER_SNOWFLAKE = os.getenv('USER_SNOWFLAKE')
 PASSWORD_SNOWFLAKE = os.getenv('PASSWORD_SNOWFLAKE')
 
+# ===============================================================
+# ✅ Forcer IPv4 uniquement (corrige l’erreur SSL/EOF)
+# ===============================================================
+def force_ipv4():
+    orig_getaddrinfo = socket.getaddrinfo
+    def getaddrinfo_ipv4(*args, **kwargs):
+        return [info for info in orig_getaddrinfo(*args, **kwargs) if info[0] == socket.AF_INET]
+    socket.getaddrinfo = getaddrinfo_ipv4
 
+force_ipv4()
+
+# ===============================================================
+# ✅ Forcer TLS 1.2 (corrige handshake AQICN)
+# ===============================================================
+class TLS12Adapter(HTTPAdapter):
+    def init_poolmanager(self, *args, **kwargs):
+        ctx = ssl.create_default_context()
+        ctx.minimum_version = ssl.TLSVersion.TLSv1_2
+        ctx.maximum_version = ssl.TLSVersion.TLSv1_2
+        kwargs['ssl_context'] = ctx
+        return super(TLS12Adapter, self).init_poolmanager(*args, **kwargs)
+
+# ===============================================================
+# ✅ Configuration de la session Requests avec retry automatique
+# ===============================================================
+session = requests.Session()
+retries = Retry(total=5, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504])
+adapter = TLS12Adapter(max_retries=retries)
+session.mount("https://", adapter)
+
+# ===============================================================
+# ✅ Connexion à Snowflake
+# ===============================================================
 conn = snowflake.connector.connect(
     user=USER_SNOWFLAKE,
     password=PASSWORD_SNOWFLAKE,
@@ -30,7 +63,9 @@ conn = snowflake.connector.connect(
 )
 cur = conn.cursor()
 
-# Villes françaises avec coordonnées
+# ===============================================================
+# ✅ Liste des villes françaises
+# ===============================================================
 CITIES = [
     ("Paris", 48.8566, 2.3522),
     ("Marseille", 43.2965, 5.3698),
@@ -54,47 +89,46 @@ CITIES = [
     ("Villeurbanne", 45.7719, 4.8902)
 ]
 
-
-#Array pour recevoir les reponse, un element pour une ville
+# ===============================================================
+# ✅ Récupération des données AQICN
+# ===============================================================
 data_cities = []
+timestamp = datetime.utcnow().isoformat()
 
-#boucle sur les ville selectionnées
-for city in CITIES :
-    name_city = city[0] 
-    lat = city[1]
-    lon = city[2]
-
-    # 🔗 URL One Call 2.5
-    url = (
-        f"https://api.waqi.info/feed/{name_city}/?token={AQICN_API_KEY}"
-    )
-
-    response = requests.get(url)
+for city in CITIES:
+    name_city = city[0]
+    url = f"https://api.waqi.info/feed/{name_city}/?token={AQICN_API_KEY}"
+    print(f"🔍 Récupération des données pour {name_city}...")
 
     try:
-        response.raise_for_status()  
+        response = session.get(url, timeout=10)
+        response.raise_for_status()
         data = response.json()
-        data_cities.append(data)
-        
-    except requests.exceptions.HTTPError as http_err:
-        print(f" Erreur HTTP : {response.status_code} - {http_err}")
-    except requests.exceptions.RequestException as req_err:
-        print(f" Erreur de requête : {req_err}")
-    except ValueError:
-        print(" Réponse reçue mais le JSON est invalide.")
+        data_cities.append({
+            "city": name_city,
+            "timestamp_utc": timestamp,
+            "status": data.get("status"),
+            "raw_json": data
+        })
+        print(f"✅ Données reçues pour {name_city}")
 
-#convertion de al data en json
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erreur réseau pour {name_city} : {e}")
+    except ValueError:
+        print(f"❌ Réponse JSON invalide pour {name_city}")
+
+# ===============================================================
+# ✅ Insertion dans Snowflake
+# ===============================================================
 json_data = json.dumps(data_cities)
 
 try:
-    # Insertion dans la table
     cur.execute("""
-        INSERT INTO aqicn_api(raw_json) 
+        INSERT INTO aqicn_api(raw_json)
         SELECT PARSE_JSON(%s)
     """, (json_data,))
-    
     conn.commit()
-    print("✅ Insertion réussie")
+    print("✅ Insertion réussie dans Snowflake")
 
 except Exception as e:
     print("❌ Erreur lors de l'insertion :", e)
@@ -102,4 +136,4 @@ except Exception as e:
 
 finally:
     cur.close()
-    
+    conn.close()
