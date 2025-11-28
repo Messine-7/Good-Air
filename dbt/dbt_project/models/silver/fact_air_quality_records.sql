@@ -19,9 +19,6 @@ WITH src AS (
         TRY_TO_NUMBER(f.value:raw_json:data:aqi::string) AS aqi,
         f.value:raw_json:data:dominentpol::string AS dominent_pol,
 
-        TRY_TO_NUMBER(f.value:raw_json:data:city:geo[0]::string) AS lat,
-        TRY_TO_NUMBER(f.value:raw_json:data:city:geo[1]::string) AS lon,
-
         TRY_TO_NUMBER(f.value:raw_json:data:iaqi:co:v::string) AS iaqi_co,
         TRY_TO_NUMBER(f.value:raw_json:data:iaqi:no2:v::string) AS iaqi_no2,
         TRY_TO_NUMBER(f.value:raw_json:data:iaqi:o3:v::string) AS iaqi_o3,
@@ -46,7 +43,6 @@ WITH src AS (
 SELECT
     md5(station_id || '-' || dt) AS record_id,
     station_id,
-
     dc.city_id,
 
     dt,
@@ -55,8 +51,6 @@ SELECT
 
     aqi,
     dominent_pol,
-    lat,
-    lon,
 
     iaqi_co,
     iaqi_no2,

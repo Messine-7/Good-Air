@@ -13,10 +13,6 @@ WITH src AS (
         TO_TIMESTAMP_NTZ(f.value:dt) AS dt_utc,
         CONVERT_TIMEZONE('UTC','Europe/Paris', TO_TIMESTAMP_NTZ(f.value:dt)) AS dt_paris,
 
-        /* Coordinates */
-        f.value:coord:lat::float AS latitude,
-        f.value:coord:lon::float AS longitude,
-
         /* Weather */
         f.value:weather[0]:id::int AS weather_id,
 
@@ -28,7 +24,6 @@ WITH src AS (
         f.value:main:pressure::int AS pressure,
         f.value:main:humidity::int AS humidity,
         f.value:main:sea_level::int AS sea_level,
-        f.value:main:grnd_level::int AS ground_level,
 
         /* Other metrics */
         f.value:visibility::int AS visibility,
@@ -38,8 +33,7 @@ WITH src AS (
         f.value:rain:"3h"::float AS rain_3h,
         f.value:clouds:all::int AS cloudiness,
 
-        /* Country / sunrise / sunset */
-        f.value:sys:country::string AS country,
+        /* Sunrise / sunset */
         TO_TIMESTAMP_NTZ(f.value:sys:sunrise) AS sunrise,
         TO_TIMESTAMP_NTZ(f.value:sys:sunset) AS sunset
     FROM BRONZE.WEATHER_API,
@@ -60,8 +54,6 @@ SELECT
     src.weather_id,
 
     /* Measures */
-    src.latitude,
-    src.longitude,
     src.temperature,
     src.feels_like,
     src.temp_min,
@@ -69,7 +61,6 @@ SELECT
     src.pressure,
     src.humidity,
     src.sea_level,
-    src.ground_level,
     src.visibility,
     src.wind_speed,
     src.wind_deg,
@@ -77,7 +68,6 @@ SELECT
     src.rain_3h,
     src.cloudiness,
 
-    src.country,
     src.sunrise,
     src.sunset
 
