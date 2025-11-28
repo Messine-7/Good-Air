@@ -97,7 +97,7 @@ with DAG(
         container_name='aqicn_dbt_silver_container',
         command=(
             "run --project-dir /app/dbt_project --profiles-dir /root/.dbt "
-            "--select silver.fact_water_quality_records silver.dim_city"
+            "--select silver.fact_air_quality_records silver.dim_city"
         ),
         api_version='auto',
         auto_remove=True,
