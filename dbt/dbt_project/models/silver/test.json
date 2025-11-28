@@ -1,0 +1,4785 @@
+[
+  {
+    "city": "Paris",
+    "raw_json": {
+      "data": {
+        "aqi": 12,
+        "attributions": [
+          {
+            "logo": "Paris-Air-Parif.png",
+            "name": "AirParif - Association de surveillance de la qualité de l'air en Île-de-France",
+            "url": "https://www.airparif.asso.fr/"
+          },
+          {
+            "logo": "Europe-EEA.png",
+            "name": "European Environment Agency",
+            "url": "http://www.eea.europa.eu/themes/air/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            48.856614,
+            2.3522219
+          ],
+          "location": "",
+          "name": "Paris",
+          "url": "https://aqicn.org/city/paris"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:37:36+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 3,
+                "day": "2025-11-28",
+                "max": 7,
+                "min": 1
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-29",
+                "max": 10,
+                "min": 1
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-30",
+                "max": 12,
+                "min": 2
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-01",
+                "max": 12,
+                "min": 6
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-02",
+                "max": 14,
+                "min": 7
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-03",
+                "max": 9,
+                "min": 8
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 10,
+                "day": "2025-11-28",
+                "max": 11,
+                "min": 7
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-29",
+                "max": 11,
+                "min": 6
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-30",
+                "max": 7,
+                "min": 3
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-01",
+                "max": 8,
+                "min": 4
+              },
+              {
+                "avg": 4,
+                "day": "2025-12-02",
+                "max": 5,
+                "min": 2
+              },
+              {
+                "avg": 4,
+                "day": "2025-12-03",
+                "max": 4,
+                "min": 4
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 29,
+                "day": "2025-11-28",
+                "max": 38,
+                "min": 20
+              },
+              {
+                "avg": 22,
+                "day": "2025-11-29",
+                "max": 35,
+                "min": 14
+              },
+              {
+                "avg": 14,
+                "day": "2025-11-30",
+                "max": 21,
+                "min": 7
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-01",
+                "max": 20,
+                "min": 9
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-02",
+                "max": 13,
+                "min": 5
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-03",
+                "max": 10,
+                "min": 9
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "co": {
+            "v": 0.1
+          },
+          "h": {
+            "v": 95
+          },
+          "no2": {
+            "v": 24
+          },
+          "o3": {
+            "v": 8.5
+          },
+          "p": {
+            "v": 1016.9
+          },
+          "pm10": {
+            "v": 12
+          },
+          "pm25": {
+            "v": 47
+          },
+          "so2": {
+            "v": 0.6
+          },
+          "t": {
+            "v": 10
+          },
+          "w": {
+            "v": 1.6
+          }
+        },
+        "idx": 5722,
+        "time": {
+          "iso": "2025-11-28T12:00:00+01:00",
+          "s": "2025-11-28 12:00:00",
+          "tz": "+01:00",
+          "v": 1764331200
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Marseille",
+    "raw_json": {
+      "data": {
+        "aqi": 59,
+        "attributions": [
+          {
+            "logo": "Paca-Air-Paca.png",
+            "name": "L'observatoire de la qualité de l'air en Région Sud Provence-Alpes-Côte d'Azur",
+            "url": "http://www.atmosud.org"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            43.305287,
+            5.394716
+          ],
+          "location": "",
+          "name": "Marseille 5 Avenues, PACA, France",
+          "url": "https://aqicn.org/city/france/paca/marseille-5-avenues"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:14:07+09:00"
+        },
+        "dominentpol": "pm25",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 2,
+                "day": "2025-11-28",
+                "max": 8,
+                "min": 1
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-29",
+                "max": 10,
+                "min": 1
+              },
+              {
+                "avg": 11,
+                "day": "2025-11-30",
+                "max": 14,
+                "min": 6
+              },
+              {
+                "avg": 4,
+                "day": "2025-12-01",
+                "max": 11,
+                "min": 1
+              },
+              {
+                "avg": 12,
+                "day": "2025-12-02",
+                "max": 16,
+                "min": 7
+              },
+              {
+                "avg": 15,
+                "day": "2025-12-03",
+                "max": 15,
+                "min": 14
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 20,
+                "day": "2025-11-28",
+                "max": 23,
+                "min": 13
+              },
+              {
+                "avg": 14,
+                "day": "2025-11-29",
+                "max": 22,
+                "min": 11
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-30",
+                "max": 11,
+                "min": 7
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-01",
+                "max": 13,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-02",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 6,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 63,
+                "day": "2025-11-28",
+                "max": 69,
+                "min": 40
+              },
+              {
+                "avg": 48,
+                "day": "2025-11-29",
+                "max": 69,
+                "min": 35
+              },
+              {
+                "avg": 24,
+                "day": "2025-11-30",
+                "max": 33,
+                "min": 19
+              },
+              {
+                "avg": 28,
+                "day": "2025-12-01",
+                "max": 39,
+                "min": 12
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-02",
+                "max": 27,
+                "min": 6
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-03",
+                "max": 10,
+                "min": 9
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "co": {
+            "v": 0.1
+          },
+          "h": {
+            "v": 49
+          },
+          "no2": {
+            "v": 20.6
+          },
+          "o3": {
+            "v": 10
+          },
+          "p": {
+            "v": 1017
+          },
+          "pm10": {
+            "v": 31
+          },
+          "pm25": {
+            "v": 59
+          },
+          "so2": {
+            "v": 1.4
+          },
+          "t": {
+            "v": 11.6
+          },
+          "w": {
+            "v": 1
+          },
+          "wg": {
+            "v": 3
+          }
+        },
+        "idx": 6882,
+        "time": {
+          "iso": "2025-11-28T13:00:00+01:00",
+          "s": "2025-11-28 13:00:00",
+          "tz": "+01:00",
+          "v": 1764334800
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Lyon",
+    "raw_json": {
+      "data": {
+        "aqi": 27,
+        "attributions": [
+          {
+            "logo": "France-AirRhoneAlpes.png",
+            "name": "Observatoire de la qualité de l'air en Auvergne-Rhône-Alpes",
+            "url": "https://www.atmo-auvergnerhonealpes.fr/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            45.74972628,
+            4.84439392
+          ],
+          "location": "",
+          "name": "Lyon Trafic Jaurès, France",
+          "url": "https://aqicn.org/city/france/rhonealpes/rhone/lyon-trafic-jaures"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:32:54+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 8,
+                "day": "2025-11-26",
+                "max": 10,
+                "min": 5
+              },
+              {
+                "avg": 3,
+                "day": "2025-11-27",
+                "max": 8,
+                "min": 1
+              },
+              {
+                "avg": 1,
+                "day": "2025-11-28",
+                "max": 3,
+                "min": 1
+              },
+              {
+                "avg": 1,
+                "day": "2025-11-29",
+                "max": 5,
+                "min": 1
+              },
+              {
+                "avg": 2,
+                "day": "2025-11-30",
+                "max": 10,
+                "min": 1
+              },
+              {
+                "avg": 1,
+                "day": "2025-12-01",
+                "max": 6,
+                "min": 1
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-02",
+                "max": 14,
+                "min": 9
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-03",
+                "max": 13,
+                "min": 13
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 9,
+                "day": "2025-11-26",
+                "max": 10,
+                "min": 5
+              },
+              {
+                "avg": 17,
+                "day": "2025-11-27",
+                "max": 25,
+                "min": 10
+              },
+              {
+                "avg": 33,
+                "day": "2025-11-28",
+                "max": 37,
+                "min": 24
+              },
+              {
+                "avg": 37,
+                "day": "2025-11-29",
+                "max": 47,
+                "min": 23
+              },
+              {
+                "avg": 16,
+                "day": "2025-11-30",
+                "max": 22,
+                "min": 7
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-01",
+                "max": 17,
+                "min": 7
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-02",
+                "max": 11,
+                "min": 5
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 5,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 24,
+                "day": "2025-11-26",
+                "max": 30,
+                "min": 16
+              },
+              {
+                "avg": 51,
+                "day": "2025-11-27",
+                "max": 73,
+                "min": 28
+              },
+              {
+                "avg": 84,
+                "day": "2025-11-28",
+                "max": 92,
+                "min": 62
+              },
+              {
+                "avg": 99,
+                "day": "2025-11-29",
+                "max": 122,
+                "min": 69
+              },
+              {
+                "avg": 53,
+                "day": "2025-11-30",
+                "max": 68,
+                "min": 20
+              },
+              {
+                "avg": 41,
+                "day": "2025-12-01",
+                "max": 53,
+                "min": 16
+              },
+              {
+                "avg": 16,
+                "day": "2025-12-02",
+                "max": 23,
+                "min": 10
+              },
+              {
+                "avg": 11,
+                "day": "2025-12-03",
+                "max": 11,
+                "min": 10
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-26",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-27",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 3
+          },
+          "h": {
+            "v": 86
+          },
+          "no2": {
+            "v": 20.9
+          },
+          "p": {
+            "v": 1022
+          },
+          "pm10": {
+            "v": 27
+          },
+          "t": {
+            "v": 5
+          },
+          "w": {
+            "v": 1.5
+          },
+          "wg": {
+            "v": 13.8
+          }
+        },
+        "idx": 10050,
+        "time": {
+          "iso": "2025-11-28T13:00:00+01:00",
+          "s": "2025-11-28 13:00:00",
+          "tz": "+01:00",
+          "v": 1764334800
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Toulouse",
+    "raw_json": {
+      "data": {
+        "aqi": 47,
+        "attributions": [
+          {
+            "logo": "France-Amto.png",
+            "name": "Observatoire agréé pour assurer la surveillance de la qualité de l’air sur le territoire de la région Occitanie",
+            "url": "https://www.atmo-occitanie.org/"
+          },
+          {
+            "logo": "Europe-EEA.png",
+            "name": "European Environment Agency",
+            "url": "http://www.eea.europa.eu/themes/air/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            43.5873309,
+            1.444026232
+          ],
+          "location": "",
+          "name": "Toulouse Berthelot, France",
+          "url": "https://aqicn.org/city/france/midipyrenees/toulouse-berthelot"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:39:35+09:00"
+        },
+        "dominentpol": "pm25",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 7,
+                "day": "2025-11-26",
+                "max": 11,
+                "min": 6
+              },
+              {
+                "avg": 2,
+                "day": "2025-11-27",
+                "max": 13,
+                "min": 1
+              },
+              {
+                "avg": 2,
+                "day": "2025-11-28",
+                "max": 8,
+                "min": 1
+              },
+              {
+                "avg": 3,
+                "day": "2025-11-29",
+                "max": 10,
+                "min": 2
+              },
+              {
+                "avg": 7,
+                "day": "2025-11-30",
+                "max": 13,
+                "min": 3
+              },
+              {
+                "avg": 4,
+                "day": "2025-12-01",
+                "max": 10,
+                "min": 1
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-02",
+                "max": 13,
+                "min": 2
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-03",
+                "max": 7,
+                "min": 6
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 9,
+                "day": "2025-11-26",
+                "max": 10,
+                "min": 6
+              },
+              {
+                "avg": 15,
+                "day": "2025-11-27",
+                "max": 19,
+                "min": 8
+              },
+              {
+                "avg": 17,
+                "day": "2025-11-28",
+                "max": 19,
+                "min": 11
+              },
+              {
+                "avg": 12,
+                "day": "2025-11-29",
+                "max": 17,
+                "min": 7
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-30",
+                "max": 10,
+                "min": 3
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-01",
+                "max": 10,
+                "min": 5
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-02",
+                "max": 11,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-03",
+                "max": 6,
+                "min": 6
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 24,
+                "day": "2025-11-26",
+                "max": 28,
+                "min": 14
+              },
+              {
+                "avg": 44,
+                "day": "2025-11-27",
+                "max": 57,
+                "min": 18
+              },
+              {
+                "avg": 52,
+                "day": "2025-11-28",
+                "max": 56,
+                "min": 29
+              },
+              {
+                "avg": 39,
+                "day": "2025-11-29",
+                "max": 53,
+                "min": 17
+              },
+              {
+                "avg": 13,
+                "day": "2025-11-30",
+                "max": 33,
+                "min": 8
+              },
+              {
+                "avg": 23,
+                "day": "2025-12-01",
+                "max": 35,
+                "min": 12
+              },
+              {
+                "avg": 17,
+                "day": "2025-12-02",
+                "max": 28,
+                "min": 7
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-03",
+                "max": 14,
+                "min": 13
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-26",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-27",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 3
+          },
+          "h": {
+            "v": 61
+          },
+          "no2": {
+            "v": 14.9
+          },
+          "o3": {
+            "v": 16.8
+          },
+          "p": {
+            "v": 1021.5
+          },
+          "pm10": {
+            "v": 17
+          },
+          "pm25": {
+            "v": 47
+          },
+          "t": {
+            "v": 10
+          },
+          "w": {
+            "v": 1.5
+          }
+        },
+        "idx": 3828,
+        "time": {
+          "iso": "2025-11-28T14:00:00+01:00",
+          "s": "2025-11-28 14:00:00",
+          "tz": "+01:00",
+          "v": 1764338400
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Nice",
+    "raw_json": {
+      "data": {
+        "aqi": 21,
+        "attributions": [
+          {
+            "logo": "Paca-Air-Paca.png",
+            "name": "L'observatoire de la qualité de l'air en Région Sud Provence-Alpes-Côte d'Azur",
+            "url": "http://www.atmosud.org"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            43.702075,
+            7.286256
+          ],
+          "location": "",
+          "name": "Nice Arson, PACA, France",
+          "url": "https://aqicn.org/city/france/paca/nice-arson"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:11:18+09:00"
+        },
+        "dominentpol": "o3",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 8,
+                "day": "2025-11-28",
+                "max": 15,
+                "min": 1
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-29",
+                "max": 15,
+                "min": 3
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-30",
+                "max": 14,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-01",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 4,
+                "day": "2025-12-02",
+                "max": 10,
+                "min": 2
+              },
+              {
+                "avg": 3,
+                "day": "2025-12-03",
+                "max": 4,
+                "min": 3
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 6,
+                "day": "2025-11-28",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 7,
+                "day": "2025-11-29",
+                "max": 12,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-30",
+                "max": 6,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-01",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-02",
+                "max": 10,
+                "min": 3
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-03",
+                "max": 8,
+                "min": 7
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 21,
+                "day": "2025-11-28",
+                "max": 33,
+                "min": 10
+              },
+              {
+                "avg": 23,
+                "day": "2025-11-29",
+                "max": 39,
+                "min": 13
+              },
+              {
+                "avg": 17,
+                "day": "2025-11-30",
+                "max": 20,
+                "min": 12
+              },
+              {
+                "avg": 17,
+                "day": "2025-12-01",
+                "max": 32,
+                "min": 9
+              },
+              {
+                "avg": 22,
+                "day": "2025-12-02",
+                "max": 31,
+                "min": 9
+              },
+              {
+                "avg": 24,
+                "day": "2025-12-03",
+                "max": 24,
+                "min": 21
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": -5
+          },
+          "h": {
+            "v": 24
+          },
+          "no2": {
+            "v": 10.1
+          },
+          "o3": {
+            "v": 21.2
+          },
+          "p": {
+            "v": 1015
+          },
+          "pm10": {
+            "v": 10
+          },
+          "pm25": {
+            "v": 15
+          },
+          "so2": {
+            "v": 1.1
+          },
+          "t": {
+            "v": 15
+          },
+          "w": {
+            "v": 2
+          }
+        },
+        "idx": 6886,
+        "time": {
+          "iso": "2025-11-28T14:00:00+01:00",
+          "s": "2025-11-28 14:00:00",
+          "tz": "+01:00",
+          "v": 1764338400
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Nantes",
+    "raw_json": {
+      "data": {
+        "aqi": 24,
+        "attributions": [
+          {
+            "logo": "France-AirPL.png",
+            "name": "Air Pays de la Loire",
+            "url": "http://www.airpl.org/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            47.2222,
+            -1.53743
+          ],
+          "location": "",
+          "name": "Bouteillerie, Nantes, Loire, France",
+          "url": "https://aqicn.org/city/france/loire/nantes/bouteillerie"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:14:54+09:00"
+        },
+        "dominentpol": "o3",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 10,
+                "day": "2025-11-28",
+                "max": 14,
+                "min": 4
+              },
+              {
+                "avg": 12,
+                "day": "2025-11-29",
+                "max": 16,
+                "min": 4
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-30",
+                "max": 14,
+                "min": 5
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-01",
+                "max": 15,
+                "min": 9
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-02",
+                "max": 16,
+                "min": 13
+              },
+              {
+                "avg": 15,
+                "day": "2025-12-03",
+                "max": 15,
+                "min": 15
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 7,
+                "day": "2025-11-28",
+                "max": 9,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-29",
+                "max": 8,
+                "min": 3
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-30",
+                "max": 8,
+                "min": 5
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-01",
+                "max": 7,
+                "min": 4
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-02",
+                "max": 10,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 6,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 17,
+                "day": "2025-11-28",
+                "max": 25,
+                "min": 11
+              },
+              {
+                "avg": 11,
+                "day": "2025-11-29",
+                "max": 23,
+                "min": 6
+              },
+              {
+                "avg": 13,
+                "day": "2025-11-30",
+                "max": 21,
+                "min": 8
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-01",
+                "max": 11,
+                "min": 6
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-02",
+                "max": 19,
+                "min": 7
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-03",
+                "max": 10,
+                "min": 9
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "co": {
+            "v": 0.1
+          },
+          "dew": {
+            "v": 14
+          },
+          "h": {
+            "v": 100
+          },
+          "no2": {
+            "v": 3
+          },
+          "o3": {
+            "v": 23.8
+          },
+          "p": {
+            "v": 1017
+          },
+          "pm10": {
+            "v": 4
+          },
+          "pm25": {
+            "v": 10
+          },
+          "t": {
+            "v": 14
+          },
+          "w": {
+            "v": 5.1
+          },
+          "wg": {
+            "v": 9.7
+          }
+        },
+        "idx": 4995,
+        "time": {
+          "iso": "2025-11-28T14:00:00+01:00",
+          "s": "2025-11-28 14:00:00",
+          "tz": "+01:00",
+          "v": 1764338400
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Montpellier",
+    "raw_json": {
+      "data": {
+        "aqi": 23,
+        "attributions": [
+          {
+            "logo": "France-Amto.png",
+            "name": "Observatoire agréé pour assurer la surveillance de la qualité de l’air sur le territoire de la région Occitanie",
+            "url": "https://www.atmo-occitanie.org/"
+          },
+          {
+            "logo": "Europe-EEA.png",
+            "name": "European Environment Agency",
+            "url": "http://www.eea.europa.eu/themes/air/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            43.591486,
+            3.886814
+          ],
+          "location": "",
+          "name": "Prés d'Arènes, LangedocRoussillon, France",
+          "url": "https://aqicn.org/city/france/langedocroussillon/pres-darenes"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:39:35+09:00"
+        },
+        "dominentpol": "o3",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 4,
+                "day": "2025-11-28",
+                "max": 9,
+                "min": 1
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-29",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-30",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-01",
+                "max": 10,
+                "min": 3
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-02",
+                "max": 15,
+                "min": 2
+              },
+              {
+                "avg": 15,
+                "day": "2025-12-03",
+                "max": 16,
+                "min": 15
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 9,
+                "day": "2025-11-28",
+                "max": 13,
+                "min": 6
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-29",
+                "max": 12,
+                "min": 4
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-30",
+                "max": 15,
+                "min": 3
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-01",
+                "max": 8,
+                "min": 4
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-02",
+                "max": 12,
+                "min": 6
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-03",
+                "max": 9,
+                "min": 7
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 30,
+                "day": "2025-11-28",
+                "max": 43,
+                "min": 17
+              },
+              {
+                "avg": 29,
+                "day": "2025-11-29",
+                "max": 40,
+                "min": 12
+              },
+              {
+                "avg": 28,
+                "day": "2025-11-30",
+                "max": 53,
+                "min": 10
+              },
+              {
+                "avg": 18,
+                "day": "2025-12-01",
+                "max": 24,
+                "min": 8
+              },
+              {
+                "avg": 23,
+                "day": "2025-12-02",
+                "max": 38,
+                "min": 9
+              },
+              {
+                "avg": 15,
+                "day": "2025-12-03",
+                "max": 15,
+                "min": 13
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "h": {
+            "v": 57.3
+          },
+          "no2": {
+            "v": 4.1
+          },
+          "o3": {
+            "v": 22.6
+          },
+          "p": {
+            "v": 1016.8
+          },
+          "pm10": {
+            "v": 11
+          },
+          "pm25": {
+            "v": 19
+          },
+          "t": {
+            "v": 13.1
+          },
+          "w": {
+            "v": 0.2
+          },
+          "wg": {
+            "v": 2
+          }
+        },
+        "idx": 5092,
+        "time": {
+          "iso": "2025-11-28T14:00:00+01:00",
+          "s": "2025-11-28 14:00:00",
+          "tz": "+01:00",
+          "v": 1764338400
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Strasbourg",
+    "raw_json": {
+      "data": {
+        "aqi": 59,
+        "attributions": [
+          {
+            "logo": "France-atmo-grand-est.png",
+            "name": "ASPA Alsace : pollution atmosphérique, surveillance de la qualité de l’air",
+            "url": "http://www.atmo-grandest.eu/"
+          },
+          {
+            "logo": "France-atmo-grand-est.png",
+            "name": "AtmoGE - La qualité de l&#8217;air dans le Grand Est",
+            "url": "http://www.atmo-grandest.eu/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            48.59043,
+            7.744983
+          ],
+          "location": "",
+          "name": "Clemenceau, Strasbourg, Alsace, France",
+          "url": "https://aqicn.org/city/france/alsace/strasbourg/clemenceau"
+        },
+        "debug": {
+          "sync": "2025-11-28T21:46:11+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 2,
+                "day": "2025-11-28",
+                "max": 5,
+                "min": 1
+              },
+              {
+                "avg": 4,
+                "day": "2025-11-29",
+                "max": 7,
+                "min": 2
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-30",
+                "max": 7,
+                "min": 1
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-01",
+                "max": 10,
+                "min": 1
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-02",
+                "max": 10,
+                "min": 5
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-03",
+                "max": 7,
+                "min": 7
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 23,
+                "day": "2025-11-28",
+                "max": 28,
+                "min": 18
+              },
+              {
+                "avg": 14,
+                "day": "2025-11-29",
+                "max": 20,
+                "min": 7
+              },
+              {
+                "avg": 13,
+                "day": "2025-11-30",
+                "max": 19,
+                "min": 8
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-01",
+                "max": 12,
+                "min": 5
+              },
+              {
+                "avg": 11,
+                "day": "2025-12-02",
+                "max": 15,
+                "min": 7
+              },
+              {
+                "avg": 12,
+                "day": "2025-12-03",
+                "max": 12,
+                "min": 11
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 67,
+                "day": "2025-11-28",
+                "max": 77,
+                "min": 56
+              },
+              {
+                "avg": 48,
+                "day": "2025-11-29",
+                "max": 63,
+                "min": 20
+              },
+              {
+                "avg": 46,
+                "day": "2025-11-30",
+                "max": 64,
+                "min": 25
+              },
+              {
+                "avg": 30,
+                "day": "2025-12-01",
+                "max": 40,
+                "min": 12
+              },
+              {
+                "avg": 40,
+                "day": "2025-12-02",
+                "max": 54,
+                "min": 21
+              },
+              {
+                "avg": 41,
+                "day": "2025-12-03",
+                "max": 41,
+                "min": 36
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 2.5
+          },
+          "h": {
+            "v": 78
+          },
+          "no2": {
+            "v": 10.7
+          },
+          "o3": {
+            "v": 13.6
+          },
+          "p": {
+            "v": 1019.5
+          },
+          "pm10": {
+            "v": 59
+          },
+          "pm25": {
+            "v": 63
+          },
+          "t": {
+            "v": 6
+          },
+          "w": {
+            "v": 3.6
+          }
+        },
+        "idx": 3821,
+        "time": {
+          "iso": "2025-11-28T11:00:00+01:00",
+          "s": "2025-11-28 11:00:00",
+          "tz": "+01:00",
+          "v": 1764327600
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Bordeaux",
+    "raw_json": {
+      "data": {
+        "aqi": 17,
+        "attributions": [
+          {
+            "logo": "France-Amto.png",
+            "name": "AtmoNAQ - La qualité de l&#8217;air en Nouvelle Aquitaine",
+            "url": "http://www.atmo-nouvelleaquitaine.org/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            44.858413102209,
+            -0.584282227097
+          ],
+          "location": "",
+          "name": "Grand Parc, Bordeaux, Aquitaine, France",
+          "url": "https://aqicn.org/city/france/aquitaine/bordeaux/grand-parc"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:31:54+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 5,
+                "day": "2025-11-26",
+                "max": 13,
+                "min": 2
+              },
+              {
+                "avg": 3,
+                "day": "2025-11-27",
+                "max": 8,
+                "min": 1
+              },
+              {
+                "avg": 7,
+                "day": "2025-11-28",
+                "max": 11,
+                "min": 5
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-29",
+                "max": 13,
+                "min": 5
+              },
+              {
+                "avg": 7,
+                "day": "2025-11-30",
+                "max": 15,
+                "min": 4
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-01",
+                "max": 12,
+                "min": 6
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-02",
+                "max": 12,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 6,
+                "min": 5
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 14,
+                "day": "2025-11-26",
+                "max": 23,
+                "min": 6
+              },
+              {
+                "avg": 17,
+                "day": "2025-11-27",
+                "max": 25,
+                "min": 10
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-28",
+                "max": 10,
+                "min": 6
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-29",
+                "max": 12,
+                "min": 4
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-30",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-01",
+                "max": 12,
+                "min": 5
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-02",
+                "max": 9,
+                "min": 4
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-03",
+                "max": 7,
+                "min": 6
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 39,
+                "day": "2025-11-26",
+                "max": 62,
+                "min": 11
+              },
+              {
+                "avg": 51,
+                "day": "2025-11-27",
+                "max": 65,
+                "min": 26
+              },
+              {
+                "avg": 28,
+                "day": "2025-11-28",
+                "max": 35,
+                "min": 16
+              },
+              {
+                "avg": 21,
+                "day": "2025-11-29",
+                "max": 29,
+                "min": 10
+              },
+              {
+                "avg": 19,
+                "day": "2025-11-30",
+                "max": 33,
+                "min": 5
+              },
+              {
+                "avg": 17,
+                "day": "2025-12-01",
+                "max": 33,
+                "min": 10
+              },
+              {
+                "avg": 16,
+                "day": "2025-12-02",
+                "max": 29,
+                "min": 9
+              },
+              {
+                "avg": 22,
+                "day": "2025-12-03",
+                "max": 22,
+                "min": 19
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-26",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-27",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 4
+          },
+          "h": {
+            "v": 54
+          },
+          "no2": {
+            "v": 8.7
+          },
+          "o3": {
+            "v": 10.6
+          },
+          "p": {
+            "v": 1021
+          },
+          "pm10": {
+            "v": 17
+          },
+          "pm25": {
+            "v": 55
+          },
+          "t": {
+            "v": 13
+          },
+          "w": {
+            "v": 3.6
+          },
+          "wg": {
+            "v": 14.9
+          }
+        },
+        "idx": 5054,
+        "time": {
+          "iso": "2025-11-28T13:00:00+01:00",
+          "s": "2025-11-28 13:00:00",
+          "tz": "+01:00",
+          "v": 1764334800
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Lille",
+    "raw_json": {
+      "data": {
+        "aqi": 61,
+        "attributions": [
+          {
+            "logo": "France-AmtoNPC.png",
+            "name": "Atmo en Hauts-de-France - Pas-de-Calais",
+            "url": "https://www.atmo-hdf.fr/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            50.640794444443976,
+            3.074772222222191
+          ],
+          "location": "",
+          "name": "Lille Leeds, Nord-Pas-de-Calais, France",
+          "url": "https://aqicn.org/city/france/nord-pas-de-calais/lille-leeds"
+        },
+        "debug": {
+          "sync": "2024-01-12T23:11:12+09:00"
+        },
+        "dominentpol": "pm25",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 3,
+                "day": "2024-01-12",
+                "max": 16,
+                "min": 1
+              },
+              {
+                "avg": 10,
+                "day": "2024-01-13",
+                "max": 22,
+                "min": 2
+              },
+              {
+                "avg": 16,
+                "day": "2024-01-14",
+                "max": 25,
+                "min": 13
+              },
+              {
+                "avg": 21,
+                "day": "2024-01-15",
+                "max": 27,
+                "min": 18
+              },
+              {
+                "avg": 23,
+                "day": "2024-01-16",
+                "max": 24,
+                "min": 23
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 28,
+                "day": "2024-01-12",
+                "max": 37,
+                "min": 19
+              },
+              {
+                "avg": 24,
+                "day": "2024-01-13",
+                "max": 37,
+                "min": 11
+              },
+              {
+                "avg": 16,
+                "day": "2024-01-14",
+                "max": 25,
+                "min": 9
+              },
+              {
+                "avg": 12,
+                "day": "2024-01-15",
+                "max": 15,
+                "min": 8
+              },
+              {
+                "avg": 13,
+                "day": "2024-01-16",
+                "max": 13,
+                "min": 11
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 74,
+                "day": "2024-01-12",
+                "max": 96,
+                "min": 46
+              },
+              {
+                "avg": 69,
+                "day": "2024-01-13",
+                "max": 93,
+                "min": 34
+              },
+              {
+                "avg": 54,
+                "day": "2024-01-14",
+                "max": 73,
+                "min": 33
+              },
+              {
+                "avg": 38,
+                "day": "2024-01-15",
+                "max": 50,
+                "min": 19
+              },
+              {
+                "avg": 35,
+                "day": "2024-01-16",
+                "max": 35,
+                "min": 34
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "co": {
+            "v": 0.1
+          },
+          "h": {
+            "v": 79
+          },
+          "no2": {
+            "v": 20.6
+          },
+          "o3": {
+            "v": 15.6
+          },
+          "p": {
+            "v": 1045.2
+          },
+          "pm10": {
+            "v": 8
+          },
+          "pm25": {
+            "v": 61
+          },
+          "so2": {
+            "v": 1.1
+          },
+          "t": {
+            "v": 5
+          },
+          "w": {
+            "v": 0.4
+          },
+          "wg": {
+            "v": 2
+          }
+        },
+        "idx": 10084,
+        "time": {
+          "iso": "2024-01-12T10:00:00+01:00",
+          "s": "2024-01-12 10:00:00",
+          "tz": "+01:00",
+          "v": 1705053600
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Rennes",
+    "raw_json": {
+      "data": {
+        "aqi": 20,
+        "attributions": [
+          {
+            "logo": "France-AirBreizh.png",
+            "name": "Airbreizh - Qualité de l'air en Bretagne",
+            "url": "http://www.airbreizh.asso.fr/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            48.11521,
+            -1.673088
+          ],
+          "location": "",
+          "name": "Thabor, Rennes, France",
+          "url": "https://aqicn.org/city/france/bretagne/rennes/thabor"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:20:08+09:00"
+        },
+        "dominentpol": "o3",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 8,
+                "day": "2025-11-28",
+                "max": 14,
+                "min": 5
+              },
+              {
+                "avg": 13,
+                "day": "2025-11-29",
+                "max": 16,
+                "min": 7
+              },
+              {
+                "avg": 10,
+                "day": "2025-11-30",
+                "max": 14,
+                "min": 7
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-01",
+                "max": 16,
+                "min": 7
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-02",
+                "max": 15,
+                "min": 13
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-03",
+                "max": 14,
+                "min": 13
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 7,
+                "day": "2025-11-28",
+                "max": 9,
+                "min": 5
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-29",
+                "max": 9,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-30",
+                "max": 7,
+                "min": 4
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-01",
+                "max": 8,
+                "min": 4
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-02",
+                "max": 15,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 5,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 16,
+                "day": "2025-11-28",
+                "max": 20,
+                "min": 12
+              },
+              {
+                "avg": 11,
+                "day": "2025-11-29",
+                "max": 18,
+                "min": 7
+              },
+              {
+                "avg": 12,
+                "day": "2025-11-30",
+                "max": 20,
+                "min": 6
+              },
+              {
+                "avg": 12,
+                "day": "2025-12-01",
+                "max": 17,
+                "min": 7
+              },
+              {
+                "avg": 17,
+                "day": "2025-12-02",
+                "max": 28,
+                "min": 8
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-03",
+                "max": 8,
+                "min": 8
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 12
+          },
+          "h": {
+            "v": 87
+          },
+          "no2": {
+            "v": 5
+          },
+          "o3": {
+            "v": 19.8
+          },
+          "p": {
+            "v": 1016
+          },
+          "pm10": {
+            "v": 5
+          },
+          "pm25": {
+            "v": 11
+          },
+          "t": {
+            "v": 14
+          },
+          "w": {
+            "v": 3
+          },
+          "wg": {
+            "v": 12.8
+          }
+        },
+        "idx": 14703,
+        "time": {
+          "iso": "2025-11-28T13:00:00+01:00",
+          "s": "2025-11-28 13:00:00",
+          "tz": "+01:00",
+          "v": 1764334800
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Reims",
+    "raw_json": {
+      "data": {
+        "aqi": 7,
+        "attributions": [
+          {
+            "logo": "France-atmo-ca.png",
+            "name": "ATMO Champagne-Ardenne",
+            "url": "http://www.atmo-grandest.eu/"
+          },
+          {
+            "logo": "France-atmo-grand-est.png",
+            "name": "AtmoGE - La qualité de l&#8217;air dans le Grand Est",
+            "url": "http://www.atmo-grandest.eu/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            49.2507,
+            4.0230805555557
+          ],
+          "location": "",
+          "name": "Doumer, Reims, Champagne Ardenne, France",
+          "url": "https://aqicn.org/city/france/champagne-ardenne/reims/doumer"
+        },
+        "debug": {
+          "sync": "2025-11-28T21:46:10+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 8,
+                "day": "2025-11-28",
+                "max": 10,
+                "min": 6
+              },
+              {
+                "avg": 7,
+                "day": "2025-11-29",
+                "max": 11,
+                "min": 4
+              },
+              {
+                "avg": 10,
+                "day": "2025-11-30",
+                "max": 12,
+                "min": 8
+              },
+              {
+                "avg": 11,
+                "day": "2025-12-01",
+                "max": 14,
+                "min": 7
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-02",
+                "max": 15,
+                "min": 10
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-03",
+                "max": 10,
+                "min": 10
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 7,
+                "day": "2025-11-28",
+                "max": 8,
+                "min": 5
+              },
+              {
+                "avg": 7,
+                "day": "2025-11-29",
+                "max": 9,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-30",
+                "max": 7,
+                "min": 3
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-01",
+                "max": 8,
+                "min": 3
+              },
+              {
+                "avg": 3,
+                "day": "2025-12-02",
+                "max": 3,
+                "min": 2
+              },
+              {
+                "avg": 4,
+                "day": "2025-12-03",
+                "max": 4,
+                "min": 4
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 21,
+                "day": "2025-11-28",
+                "max": 31,
+                "min": 16
+              },
+              {
+                "avg": 23,
+                "day": "2025-11-29",
+                "max": 33,
+                "min": 11
+              },
+              {
+                "avg": 11,
+                "day": "2025-11-30",
+                "max": 20,
+                "min": 6
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-01",
+                "max": 24,
+                "min": 7
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-02",
+                "max": 9,
+                "min": 3
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-03",
+                "max": 9,
+                "min": 9
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 8
+          },
+          "h": {
+            "v": 93
+          },
+          "no2": {
+            "v": 9.4
+          },
+          "o3": {
+            "v": 12.3
+          },
+          "p": {
+            "v": 1016
+          },
+          "pm10": {
+            "v": 7
+          },
+          "pm25": {
+            "v": 3
+          },
+          "so2": {
+            "v": 1.7
+          },
+          "t": {
+            "v": 9
+          },
+          "w": {
+            "v": 3
+          }
+        },
+        "idx": 6806,
+        "time": {
+          "iso": "2025-11-28T11:00:00+01:00",
+          "s": "2025-11-28 11:00:00",
+          "tz": "+01:00",
+          "v": 1764327600
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Saint-Étienne",
+    "raw_json": {
+      "data": {
+        "aqi": 8,
+        "attributions": [
+          {
+            "logo": "France-AirRhoneAlpes.png",
+            "name": "Observatoire de la qualité de l'air en Auvergne-Rhône-Alpes",
+            "url": "https://www.atmo-auvergnerhonealpes.fr/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            45.44797962,
+            4.38876322
+          ],
+          "location": "",
+          "name": "Saint-Etienne Boulevard Urbain, France",
+          "url": "https://aqicn.org/city/france/rhonealpes/loire/saint-etienne-boulevard-urbain"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:32:54+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 9,
+                "day": "2025-11-26",
+                "max": 12,
+                "min": 7
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-27",
+                "max": 10,
+                "min": 1
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-28",
+                "max": 10,
+                "min": 1
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-29",
+                "max": 13,
+                "min": 6
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-30",
+                "max": 13,
+                "min": 4
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-01",
+                "max": 15,
+                "min": 3
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-02",
+                "max": 17,
+                "min": 10
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-03",
+                "max": 13,
+                "min": 13
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 9,
+                "day": "2025-11-26",
+                "max": 10,
+                "min": 7
+              },
+              {
+                "avg": 19,
+                "day": "2025-11-27",
+                "max": 37,
+                "min": 9
+              },
+              {
+                "avg": 24,
+                "day": "2025-11-28",
+                "max": 31,
+                "min": 12
+              },
+              {
+                "avg": 12,
+                "day": "2025-11-29",
+                "max": 16,
+                "min": 5
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-30",
+                "max": 14,
+                "min": 2
+              },
+              {
+                "avg": 12,
+                "day": "2025-12-01",
+                "max": 19,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-02",
+                "max": 9,
+                "min": 2
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 5,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 26,
+                "day": "2025-11-26",
+                "max": 33,
+                "min": 16
+              },
+              {
+                "avg": 57,
+                "day": "2025-11-27",
+                "max": 100,
+                "min": 28
+              },
+              {
+                "avg": 72,
+                "day": "2025-11-28",
+                "max": 86,
+                "min": 38
+              },
+              {
+                "avg": 45,
+                "day": "2025-11-29",
+                "max": 58,
+                "min": 16
+              },
+              {
+                "avg": 26,
+                "day": "2025-11-30",
+                "max": 53,
+                "min": 6
+              },
+              {
+                "avg": 38,
+                "day": "2025-12-01",
+                "max": 61,
+                "min": 10
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-02",
+                "max": 18,
+                "min": 4
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-03",
+                "max": 10,
+                "min": 10
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-26",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-27",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "co": {
+            "v": 0.1
+          },
+          "dew": {
+            "v": 6
+          },
+          "h": {
+            "v": 87
+          },
+          "no2": {
+            "v": 18.5
+          },
+          "p": {
+            "v": 1020
+          },
+          "pm10": {
+            "v": 8
+          },
+          "t": {
+            "v": 8
+          },
+          "w": {
+            "v": 1
+          },
+          "wg": {
+            "v": 11.8
+          }
+        },
+        "idx": 10049,
+        "time": {
+          "iso": "2025-11-28T13:00:00+01:00",
+          "s": "2025-11-28 13:00:00",
+          "tz": "+01:00",
+          "v": 1764334800
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Le Havre",
+    "raw_json": {
+      "data": {
+        "aqi": 25,
+        "attributions": [
+          {
+            "logo": "France-AirNormand.png",
+            "name": "Observatoire de la qualité de l'air en Normandie",
+            "url": "https://www.atmonormandie.fr/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            49.5001917595947,
+            0.110902803971606
+          ],
+          "location": "",
+          "name": "Rue  Lafaurie (coté Montant), Le Havre, France",
+          "url": "https://aqicn.org/city/france/le-havre/rue--lafaurie-cote-montant"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:31:54+09:00"
+        },
+        "dominentpol": "pm25",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 11,
+                "day": "2025-11-28",
+                "max": 15,
+                "min": 9
+              },
+              {
+                "avg": 13,
+                "day": "2025-11-29",
+                "max": 15,
+                "min": 9
+              },
+              {
+                "avg": 14,
+                "day": "2025-11-30",
+                "max": 17,
+                "min": 14
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-01",
+                "max": 14,
+                "min": 10
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-02",
+                "max": 14,
+                "min": 12
+              },
+              {
+                "avg": 12,
+                "day": "2025-12-03",
+                "max": 12,
+                "min": 12
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 7,
+                "day": "2025-11-28",
+                "max": 9,
+                "min": 5
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-29",
+                "max": 9,
+                "min": 3
+              },
+              {
+                "avg": 4,
+                "day": "2025-11-30",
+                "max": 4,
+                "min": 3
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-01",
+                "max": 7,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-02",
+                "max": 10,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 6,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 16,
+                "day": "2025-11-28",
+                "max": 19,
+                "min": 14
+              },
+              {
+                "avg": 11,
+                "day": "2025-11-29",
+                "max": 18,
+                "min": 5
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-30",
+                "max": 6,
+                "min": 4
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-01",
+                "max": 12,
+                "min": 7
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-02",
+                "max": 19,
+                "min": 9
+              },
+              {
+                "avg": 11,
+                "day": "2025-12-03",
+                "max": 11,
+                "min": 11
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 11
+          },
+          "h": {
+            "v": 100
+          },
+          "p": {
+            "v": 1014
+          },
+          "pm25": {
+            "v": 25
+          },
+          "t": {
+            "v": 11
+          },
+          "w": {
+            "v": 5.1
+          },
+          "wg": {
+            "v": 12.3
+          }
+        },
+        "idx": 4600,
+        "time": {
+          "iso": "2025-11-28T13:00:00+01:00",
+          "s": "2025-11-28 13:00:00",
+          "tz": "+01:00",
+          "v": 1764334800
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Toulon",
+    "raw_json": {
+      "data": {
+        "aqi": 28,
+        "attributions": [
+          {
+            "logo": "Paca-Air-Paca.png",
+            "name": "L'observatoire de la qualité de l'air en Région Sud Provence-Alpes-Côte d'Azur",
+            "url": "http://www.atmosud.org"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            43.126821,
+            5.921605
+          ],
+          "location": "",
+          "name": "Toulon Foch, PACA, France",
+          "url": "https://aqicn.org/city/france/paca/toulon-foch"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:49:52+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 7,
+                "day": "2025-11-28",
+                "max": 11,
+                "min": 2
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-29",
+                "max": 12,
+                "min": 4
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-30",
+                "max": 12,
+                "min": 7
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-01",
+                "max": 12,
+                "min": 8
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-02",
+                "max": 15,
+                "min": 7
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-03",
+                "max": 11,
+                "min": 9
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 10,
+                "day": "2025-11-28",
+                "max": 15,
+                "min": 7
+              },
+              {
+                "avg": 12,
+                "day": "2025-11-29",
+                "max": 17,
+                "min": 7
+              },
+              {
+                "avg": 12,
+                "day": "2025-11-30",
+                "max": 16,
+                "min": 7
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-01",
+                "max": 13,
+                "min": 5
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-02",
+                "max": 10,
+                "min": 4
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-03",
+                "max": 7,
+                "min": 7
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 30,
+                "day": "2025-11-28",
+                "max": 49,
+                "min": 18
+              },
+              {
+                "avg": 35,
+                "day": "2025-11-29",
+                "max": 51,
+                "min": 18
+              },
+              {
+                "avg": 33,
+                "day": "2025-11-30",
+                "max": 42,
+                "min": 20
+              },
+              {
+                "avg": 22,
+                "day": "2025-12-01",
+                "max": 28,
+                "min": 14
+              },
+              {
+                "avg": 18,
+                "day": "2025-12-02",
+                "max": 25,
+                "min": 7
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-03",
+                "max": 14,
+                "min": 14
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "h": {
+            "v": 64
+          },
+          "no2": {
+            "v": 16.3
+          },
+          "o3": {
+            "v": 11
+          },
+          "p": {
+            "v": 1015.6
+          },
+          "pm10": {
+            "v": 28
+          },
+          "pm25": {
+            "v": 70
+          },
+          "t": {
+            "v": 13.3
+          },
+          "w": {
+            "v": 2
+          },
+          "wg": {
+            "v": 5
+          }
+        },
+        "idx": 6889,
+        "time": {
+          "iso": "2025-11-28T14:00:00+01:00",
+          "s": "2025-11-28 14:00:00",
+          "tz": "+01:00",
+          "v": 1764338400
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Grenoble",
+    "raw_json": {
+      "data": {
+        "aqi": 25,
+        "attributions": [
+          {
+            "logo": "France-AirRhoneAlpes.png",
+            "name": "Observatoire de la qualité de l'air en Auvergne-Rhône-Alpes",
+            "url": "https://www.atmo-auvergnerhonealpes.fr/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            45.180750631543,
+            5.720058504242
+          ],
+          "location": "",
+          "name": "Grenoble Grands Boulevards, France",
+          "url": "https://aqicn.org/city/france/rhonealpes/isere/grenoble-grands-boulevards"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:32:52+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 3,
+                "day": "2025-11-28",
+                "max": 5,
+                "min": 1
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-29",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 3,
+                "day": "2025-11-30",
+                "max": 8,
+                "min": 2
+              },
+              {
+                "avg": 3,
+                "day": "2025-12-01",
+                "max": 8,
+                "min": 2
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-02",
+                "max": 12,
+                "min": 3
+              },
+              {
+                "avg": 4,
+                "day": "2025-12-03",
+                "max": 5,
+                "min": 4
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 48,
+                "day": "2025-11-28",
+                "max": 55,
+                "min": 31
+              },
+              {
+                "avg": 36,
+                "day": "2025-11-29",
+                "max": 48,
+                "min": 26
+              },
+              {
+                "avg": 33,
+                "day": "2025-11-30",
+                "max": 43,
+                "min": 9
+              },
+              {
+                "avg": 32,
+                "day": "2025-12-01",
+                "max": 40,
+                "min": 17
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-02",
+                "max": 18,
+                "min": 6
+              },
+              {
+                "avg": 15,
+                "day": "2025-12-03",
+                "max": 15,
+                "min": 12
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 133,
+                "day": "2025-11-28",
+                "max": 154,
+                "min": 87
+              },
+              {
+                "avg": 105,
+                "day": "2025-11-29",
+                "max": 133,
+                "min": 79
+              },
+              {
+                "avg": 97,
+                "day": "2025-11-30",
+                "max": 124,
+                "min": 33
+              },
+              {
+                "avg": 94,
+                "day": "2025-12-01",
+                "max": 115,
+                "min": 60
+              },
+              {
+                "avg": 48,
+                "day": "2025-12-02",
+                "max": 60,
+                "min": 16
+              },
+              {
+                "avg": 53,
+                "day": "2025-12-03",
+                "max": 53,
+                "min": 42
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "h": {
+            "v": 83.6
+          },
+          "no2": {
+            "v": 11.8
+          },
+          "p": {
+            "v": 1023.2
+          },
+          "pm10": {
+            "v": 25
+          },
+          "t": {
+            "v": 2.2
+          },
+          "w": {
+            "v": 0.3
+          },
+          "wg": {
+            "v": 2.3
+          }
+        },
+        "idx": 3067,
+        "time": {
+          "iso": "2025-11-28T13:00:00+01:00",
+          "s": "2025-11-28 13:00:00",
+          "tz": "+01:00",
+          "v": 1764334800
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Dijon",
+    "raw_json": {
+      "data": {
+        "aqi": 23,
+        "attributions": [
+          {
+            "logo": "France-Atmo-BFC.png",
+            "name": "ATMO Bourgogne-Franche-Comté - surveillance de la qualite de l’air",
+            "url": "https://www.atmo-bfc.org/"
+          },
+          {
+            "logo": "Europe-EEA.png",
+            "name": "European Environment Agency",
+            "url": "http://www.eea.europa.eu/themes/air/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            47.325745,
+            5.041056
+          ],
+          "location": "",
+          "name": "Tremouille, France",
+          "url": "https://aqicn.org/city/france/bourgogne/tremouille"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:49:17+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 5,
+                "day": "2025-11-28",
+                "max": 7,
+                "min": 3
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-29",
+                "max": 8,
+                "min": 4
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-30",
+                "max": 13,
+                "min": 7
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-01",
+                "max": 11,
+                "min": 6
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-02",
+                "max": 12,
+                "min": 8
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-03",
+                "max": 10,
+                "min": 10
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 12,
+                "day": "2025-11-28",
+                "max": 16,
+                "min": 8
+              },
+              {
+                "avg": 11,
+                "day": "2025-11-29",
+                "max": 16,
+                "min": 6
+              },
+              {
+                "avg": 5,
+                "day": "2025-11-30",
+                "max": 15,
+                "min": 3
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-01",
+                "max": 9,
+                "min": 5
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-02",
+                "max": 11,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 5,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 38,
+                "day": "2025-11-28",
+                "max": 52,
+                "min": 27
+              },
+              {
+                "avg": 38,
+                "day": "2025-11-29",
+                "max": 54,
+                "min": 21
+              },
+              {
+                "avg": 13,
+                "day": "2025-11-30",
+                "max": 52,
+                "min": 6
+              },
+              {
+                "avg": 19,
+                "day": "2025-12-01",
+                "max": 25,
+                "min": 11
+              },
+              {
+                "avg": 17,
+                "day": "2025-12-02",
+                "max": 23,
+                "min": 12
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-03",
+                "max": 14,
+                "min": 14
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 5
+          },
+          "h": {
+            "v": 96.5
+          },
+          "no2": {
+            "v": 10.6
+          },
+          "o3": {
+            "v": 7.1
+          },
+          "p": {
+            "v": 1020
+          },
+          "pm10": {
+            "v": 23
+          },
+          "pm25": {
+            "v": 23
+          },
+          "t": {
+            "v": 5.5
+          },
+          "w": {
+            "v": 3
+          }
+        },
+        "idx": 11955,
+        "time": {
+          "iso": "2025-11-28T12:00:00+01:00",
+          "s": "2025-11-28 12:00:00",
+          "tz": "+01:00",
+          "v": 1764331200
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Angers",
+    "raw_json": {
+      "data": {
+        "aqi": 19,
+        "attributions": [
+          {
+            "logo": "France-AirPL.png",
+            "name": "Air Pays de la Loire",
+            "url": "http://www.airpl.org/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            47.466937999983,
+            -0.554641
+          ],
+          "location": "",
+          "name": "Roi Rene, Angers, Loire, France",
+          "url": "https://aqicn.org/city/france/loire/angers/roi-rene"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:14:54+09:00"
+        },
+        "dominentpol": "o3",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 8,
+                "day": "2025-11-28",
+                "max": 12,
+                "min": 3
+              },
+              {
+                "avg": 11,
+                "day": "2025-11-29",
+                "max": 14,
+                "min": 5
+              },
+              {
+                "avg": 8,
+                "day": "2025-11-30",
+                "max": 14,
+                "min": 6
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-01",
+                "max": 14,
+                "min": 8
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-02",
+                "max": 14,
+                "min": 11
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-03",
+                "max": 14,
+                "min": 14
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 6,
+                "day": "2025-11-28",
+                "max": 7,
+                "min": 5
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-29",
+                "max": 8,
+                "min": 3
+              },
+              {
+                "avg": 6,
+                "day": "2025-11-30",
+                "max": 7,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-01",
+                "max": 8,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-02",
+                "max": 8,
+                "min": 4
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-03",
+                "max": 8,
+                "min": 8
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 17,
+                "day": "2025-11-28",
+                "max": 21,
+                "min": 13
+              },
+              {
+                "avg": 13,
+                "day": "2025-11-29",
+                "max": 20,
+                "min": 7
+              },
+              {
+                "avg": 12,
+                "day": "2025-11-30",
+                "max": 17,
+                "min": 7
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-01",
+                "max": 14,
+                "min": 8
+              },
+              {
+                "avg": 12,
+                "day": "2025-12-02",
+                "max": 16,
+                "min": 7
+              },
+              {
+                "avg": 15,
+                "day": "2025-12-03",
+                "max": 15,
+                "min": 15
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "h": {
+            "v": 96.5
+          },
+          "no2": {
+            "v": 6.1
+          },
+          "o3": {
+            "v": 18.6
+          },
+          "p": {
+            "v": 1014.3
+          },
+          "pm10": {
+            "v": 7
+          },
+          "pm25": {
+            "v": 7
+          },
+          "t": {
+            "v": 12.7
+          },
+          "w": {
+            "v": 5.5
+          },
+          "wg": {
+            "v": 14.5
+          }
+        },
+        "idx": 14095,
+        "time": {
+          "iso": "2025-11-28T14:00:00+01:00",
+          "s": "2025-11-28 14:00:00",
+          "tz": "+01:00",
+          "v": 1764338400
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Nîmes",
+    "raw_json": {
+      "data": {
+        "aqi": 28,
+        "attributions": [
+          {
+            "logo": "France-Amto.png",
+            "name": "Observatoire agréé pour assurer la surveillance de la qualité de l’air sur le territoire de la région Occitanie",
+            "url": "https://www.atmo-occitanie.org/"
+          },
+          {
+            "logo": "Europe-EEA.png",
+            "name": "European Environment Agency",
+            "url": "http://www.eea.europa.eu/themes/air/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            43.834404,
+            4.374186
+          ],
+          "location": "",
+          "name": "Nîmes Sud, LangedocRoussillon, France",
+          "url": "https://aqicn.org/city/france/langedocroussillon/nimes-sud"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:39:35+09:00"
+        },
+        "dominentpol": "o3",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 12,
+                "day": "2025-11-28",
+                "max": 15,
+                "min": 8
+              },
+              {
+                "avg": 4,
+                "day": "2025-11-29",
+                "max": 11,
+                "min": 1
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-30",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 9,
+                "day": "2025-12-01",
+                "max": 14,
+                "min": 4
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-02",
+                "max": 14,
+                "min": 2
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-03",
+                "max": 13,
+                "min": 13
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 6,
+                "day": "2025-11-28",
+                "max": 8,
+                "min": 4
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-29",
+                "max": 16,
+                "min": 5
+              },
+              {
+                "avg": 9,
+                "day": "2025-11-30",
+                "max": 19,
+                "min": 4
+              },
+              {
+                "avg": 6,
+                "day": "2025-12-01",
+                "max": 11,
+                "min": 3
+              },
+              {
+                "avg": 8,
+                "day": "2025-12-02",
+                "max": 14,
+                "min": 4
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 5,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 15,
+                "day": "2025-11-28",
+                "max": 25,
+                "min": 8
+              },
+              {
+                "avg": 30,
+                "day": "2025-11-29",
+                "max": 54,
+                "min": 15
+              },
+              {
+                "avg": 28,
+                "day": "2025-11-30",
+                "max": 60,
+                "min": 13
+              },
+              {
+                "avg": 18,
+                "day": "2025-12-01",
+                "max": 37,
+                "min": 6
+              },
+              {
+                "avg": 22,
+                "day": "2025-12-02",
+                "max": 45,
+                "min": 6
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-03",
+                "max": 10,
+                "min": 10
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 2,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "dew": {
+            "v": 5
+          },
+          "h": {
+            "v": 60
+          },
+          "no2": {
+            "v": 3
+          },
+          "o3": {
+            "v": 27.9
+          },
+          "p": {
+            "v": 1017.5
+          },
+          "pm10": {
+            "v": 3
+          },
+          "pm25": {
+            "v": 6
+          },
+          "so2": {
+            "v": 1.2
+          },
+          "t": {
+            "v": 12.5
+          },
+          "w": {
+            "v": 6.1
+          },
+          "wg": {
+            "v": 13.1
+          }
+        },
+        "idx": 5089,
+        "time": {
+          "iso": "2025-11-28T14:00:00+01:00",
+          "s": "2025-11-28 14:00:00",
+          "tz": "+01:00",
+          "v": 1764338400
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  },
+  {
+    "city": "Villeurbanne",
+    "raw_json": {
+      "data": {
+        "aqi": 58,
+        "attributions": [
+          {
+            "logo": "France-AirRhoneAlpes.png",
+            "name": "Observatoire de la qualité de l'air en Auvergne-Rhône-Alpes",
+            "url": "https://www.atmo-auvergnerhonealpes.fr/"
+          },
+          {
+            "name": "World Air Quality Index Project",
+            "url": "https://waqi.info/"
+          }
+        ],
+        "city": {
+          "geo": [
+            45.7747254,
+            4.8986121
+          ],
+          "location": "",
+          "name": "Lyon Peripherique, France",
+          "url": "https://aqicn.org/city/france/rhonealpes/rhone/lyon-peripherique"
+        },
+        "debug": {
+          "sync": "2025-11-28T22:32:53+09:00"
+        },
+        "dominentpol": "pm10",
+        "forecast": {
+          "daily": {
+            "o3": [
+              {
+                "avg": 8,
+                "day": "2025-11-26",
+                "max": 10,
+                "min": 5
+              },
+              {
+                "avg": 3,
+                "day": "2025-11-27",
+                "max": 8,
+                "min": 1
+              },
+              {
+                "avg": 1,
+                "day": "2025-11-28",
+                "max": 3,
+                "min": 1
+              },
+              {
+                "avg": 1,
+                "day": "2025-11-29",
+                "max": 5,
+                "min": 1
+              },
+              {
+                "avg": 2,
+                "day": "2025-11-30",
+                "max": 10,
+                "min": 1
+              },
+              {
+                "avg": 1,
+                "day": "2025-12-01",
+                "max": 6,
+                "min": 1
+              },
+              {
+                "avg": 10,
+                "day": "2025-12-02",
+                "max": 14,
+                "min": 9
+              },
+              {
+                "avg": 13,
+                "day": "2025-12-03",
+                "max": 13,
+                "min": 13
+              }
+            ],
+            "pm10": [
+              {
+                "avg": 9,
+                "day": "2025-11-26",
+                "max": 10,
+                "min": 5
+              },
+              {
+                "avg": 17,
+                "day": "2025-11-27",
+                "max": 25,
+                "min": 10
+              },
+              {
+                "avg": 33,
+                "day": "2025-11-28",
+                "max": 37,
+                "min": 24
+              },
+              {
+                "avg": 37,
+                "day": "2025-11-29",
+                "max": 47,
+                "min": 23
+              },
+              {
+                "avg": 16,
+                "day": "2025-11-30",
+                "max": 22,
+                "min": 7
+              },
+              {
+                "avg": 14,
+                "day": "2025-12-01",
+                "max": 17,
+                "min": 7
+              },
+              {
+                "avg": 7,
+                "day": "2025-12-02",
+                "max": 11,
+                "min": 5
+              },
+              {
+                "avg": 5,
+                "day": "2025-12-03",
+                "max": 5,
+                "min": 5
+              }
+            ],
+            "pm25": [
+              {
+                "avg": 24,
+                "day": "2025-11-26",
+                "max": 30,
+                "min": 16
+              },
+              {
+                "avg": 51,
+                "day": "2025-11-27",
+                "max": 73,
+                "min": 28
+              },
+              {
+                "avg": 84,
+                "day": "2025-11-28",
+                "max": 92,
+                "min": 62
+              },
+              {
+                "avg": 99,
+                "day": "2025-11-29",
+                "max": 122,
+                "min": 69
+              },
+              {
+                "avg": 53,
+                "day": "2025-11-30",
+                "max": 68,
+                "min": 20
+              },
+              {
+                "avg": 41,
+                "day": "2025-12-01",
+                "max": 53,
+                "min": 16
+              },
+              {
+                "avg": 16,
+                "day": "2025-12-02",
+                "max": 23,
+                "min": 10
+              },
+              {
+                "avg": 11,
+                "day": "2025-12-03",
+                "max": 11,
+                "min": 10
+              }
+            ],
+            "uvi": [
+              {
+                "avg": 0,
+                "day": "2025-11-26",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-27",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-28",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-29",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-11-30",
+                "max": 0,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-01",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-02",
+                "max": 1,
+                "min": 0
+              },
+              {
+                "avg": 0,
+                "day": "2025-12-03",
+                "max": 0,
+                "min": 0
+              }
+            ]
+          }
+        },
+        "iaqi": {
+          "co": {
+            "v": 0.1
+          },
+          "dew": {
+            "v": 3
+          },
+          "h": {
+            "v": 86
+          },
+          "no2": {
+            "v": 29.7
+          },
+          "p": {
+            "v": 1022
+          },
+          "pm10": {
+            "v": 58
+          },
+          "t": {
+            "v": 5
+          },
+          "w": {
+            "v": 1.5
+          },
+          "wg": {
+            "v": 13.8
+          }
+        },
+        "idx": 7744,
+        "time": {
+          "iso": "2025-11-28T13:00:00+01:00",
+          "s": "2025-11-28 13:00:00",
+          "tz": "+01:00",
+          "v": 1764334800
+        }
+      },
+      "status": "ok"
+    },
+    "status": "ok",
+    "timestamp_utc": "2025-11-28T13:57:38.818685"
+  }
+]

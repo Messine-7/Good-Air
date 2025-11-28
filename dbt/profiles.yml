@@ -9,6 +9,6 @@ dbt_project:        # <- ce nom doit correspondre à 'name:' dans ton dbt_projec
       role: "ACCOUNTADMIN"
       warehouse: "COMPUTE_WH"
       database: GOOD_AIR           # base brute
-      schema: TRANSFORMED          # schema de sortie dbt
+      schema: SILVER          # schema de sortie dbt
       threads: 4
       client_session_keep_alive: false

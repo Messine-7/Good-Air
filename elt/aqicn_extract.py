@@ -59,7 +59,7 @@ conn = snowflake.connector.connect(
     account=ACOUNT_SNOWFLAKE,
     warehouse="COMPUTE_WH",
     database="GOOD_AIR",
-    schema="RAW"
+    schema="BRONZE"
 )
 cur = conn.cursor()
 
