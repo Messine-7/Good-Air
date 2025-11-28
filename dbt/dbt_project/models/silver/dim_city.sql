@@ -1,19 +1,13 @@
 {{ config(materialized="table") }}
 
--- ======================
--- EXTRACTION VILLES WEATHER API
--- ======================
 WITH weather AS (
     SELECT DISTINCT
-        UPPER(TRIM(f.value:name::string)) AS city_name
+        UPPER(TRIM(f.value:base_city_name::string)) AS city_name
     FROM BRONZE.WEATHER_API,
          LATERAL FLATTEN(input => raw_json) f
-    WHERE f.value:name::string IS NOT NULL
+    WHERE f.value:base_city_name::string IS NOT NULL
 ),
 
--- ======================
--- EXTRACTION VILLES AQICN API
--- ======================
 aqicn AS (
     SELECT DISTINCT
         UPPER(TRIM(f.value:city::string)) AS city_name,
@@ -23,9 +17,6 @@ aqicn AS (
     WHERE f.value:city::string IS NOT NULL
 ),
 
--- ======================
--- COMBINAISON DES SOURCES
--- ======================
 combined AS (
     SELECT 
         COALESCE(w.city_name, a.city_name) AS city_name,
@@ -36,9 +27,6 @@ combined AS (
     GROUP BY COALESCE(w.city_name, a.city_name)
 )
 
--- ======================
--- SORTIE FINALE
--- ======================
 SELECT
     CONCAT('CT', LPAD(ROW_NUMBER() OVER (ORDER BY city_name), 3, '0')) AS city_id,
     city_name,

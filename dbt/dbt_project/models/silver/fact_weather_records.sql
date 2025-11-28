@@ -5,17 +5,22 @@
 
 WITH src AS (
     SELECT
-        f.value:name::string AS city_name,
+        /* 🔥 Nouveau : on lit le nom de ville depuis le champ JSON que TU ajoutes */
+        UPPER(TRIM(f.value:base_city_name::string)) AS base_city_name,
 
+        /* Time fields */
         f.value:dt::bigint AS dt,
         TO_TIMESTAMP_NTZ(f.value:dt) AS dt_utc,
         CONVERT_TIMEZONE('UTC','Europe/Paris', TO_TIMESTAMP_NTZ(f.value:dt)) AS dt_paris,
 
+        /* Coordinates */
         f.value:coord:lat::float AS latitude,
         f.value:coord:lon::float AS longitude,
 
+        /* Weather */
         f.value:weather[0]:id::int AS weather_id,
 
+        /* Main metrics */
         f.value:main:temp::float AS temperature,
         f.value:main:feels_like::float AS feels_like,
         f.value:main:temp_min::float AS temp_min,
@@ -25,16 +30,15 @@ WITH src AS (
         f.value:main:sea_level::int AS sea_level,
         f.value:main:grnd_level::int AS ground_level,
 
+        /* Other metrics */
         f.value:visibility::int AS visibility,
-
         f.value:wind:speed::float AS wind_speed,
         f.value:wind:deg::int AS wind_deg,
-
         f.value:rain:"1h"::float AS rain_1h,
         f.value:rain:"3h"::float AS rain_3h,
-
         f.value:clouds:all::int AS cloudiness,
 
+        /* Country / sunrise / sunset */
         f.value:sys:country::string AS country,
         TO_TIMESTAMP_NTZ(f.value:sys:sunrise) AS sunrise,
         TO_TIMESTAMP_NTZ(f.value:sys:sunset) AS sunset
@@ -43,8 +47,8 @@ WITH src AS (
 )
 
 SELECT
-    /* Clé primaire stable */
-    md5(src.city_name || src.dt) AS record_id,
+    /* 🔥 Clé primaire stable basée sur base_city_name */
+    md5(src.base_city_name || src.dt) AS record_id,
 
     /* Time */
     src.dt,
@@ -52,7 +56,6 @@ SELECT
     src.dt_paris,
 
     /* Dimensions */
-    -- UPPER(TRIM(src.city_name)) AS city_id,
     dc.city_id,
     src.weather_id,
 
@@ -68,7 +71,6 @@ SELECT
     src.sea_level,
     src.ground_level,
     src.visibility,
-
     src.wind_speed,
     src.wind_deg,
     src.rain_1h,
@@ -81,8 +83,9 @@ SELECT
 
 FROM src
 LEFT JOIN SILVER.DIM_CITY dc
-    ON UPPER(TRIM(src.city_name)) = dc.city_name
+    /* 🔥 Jointure sur base_city_name */
+    ON src.base_city_name = dc.city_name
 
 {% if is_incremental() %}
-WHERE md5(src.city_name || src.dt) NOT IN (SELECT record_id FROM {{ this }})
+WHERE md5(src.base_city_name || src.dt) NOT IN (SELECT record_id FROM {{ this }})
 {% endif %}

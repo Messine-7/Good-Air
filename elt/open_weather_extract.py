@@ -61,7 +61,8 @@ try:
         ("Villeurbanne", 45.7719, 4.8902)
     ]
 
-    data_cities = []
+    api_success = 0
+    data_cities = []   # <-- Un seul tableau comme avant
 
     # --- Boucle sur les villes ---
     for city in CITIES:
@@ -71,26 +72,34 @@ try:
         try:
             response = requests.get(url)
             response.raise_for_status()
-            data_cities.append(response.json())
+            api_success += 1
+
+            raw_json = response.json()
+
+            # --- Ajouter le vrai nom de la ville dans chaque objet JSON ---
+            raw_json["base_city_name"] = name_city.upper()
+
+            # --- Ajouter dans un seul tableau globale (comme avant) ---
+            data_cities.append(raw_json)
+
         except requests.exceptions.RequestException as e:
             print(f"❌ Erreur API {name_city}: {e}")
 
-    api_request_count.set(len(data_cities))
-
-    # --- Insertion dans Snowflake ---
-    json_data = json.dumps(data_cities)
+    # --- Insertion unique dans Snowflake ---
     cur.execute("""
         INSERT INTO weather_api(raw_json)
         SELECT PARSE_JSON(%s)
-    """, (json_data,))
+    """, (json.dumps(data_cities),))
+
     conn.commit()
     print("✅ Insertion réussie")
 
-    job_status.set(1)  # job OK
+    api_request_count.set(api_success)
+    job_status.set(1)
 
 except Exception as e:
     print("❌ Erreur générale :", e)
-    job_status.set(0)  # job échoué
+    job_status.set(0)
 
 finally:
     try:
@@ -100,7 +109,6 @@ finally:
         pass
     job_duration.set(time.time() - start_time)
 
-    # --- Push metrics vers Pushgateway ---
     try:
         push_to_gateway("pushgateway:9091", job="elt_weather_job", registry=registry)
     except Exception as e:
