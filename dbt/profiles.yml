@@ -9,6 +9,6 @@ dbt_project:        # <- ce nom doit correspondre à 'name:' dans ton dbt_projec
       role: "ACCOUNTADMIN"
       warehouse: "COMPUTE_WH"
       database: GOOD_AIR           # base brute
-      schema: SILVER          # schema de sortie dbt
+      schema: PUBLIC          # schema par defaut de sortie dbt (redirection silver et gold dans dbt_project.yml et macro generate_schema_name.sql)
       threads: 4
       client_session_keep_alive: false

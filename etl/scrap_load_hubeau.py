@@ -21,6 +21,9 @@ import os
 from dotenv import load_dotenv
 import time
 import locale
+import sys
+import shutil
+
 
 # Charger les variables d'environnement
 load_dotenv('/app/.env')
@@ -43,7 +46,7 @@ conn = snowflake.connector.connect(
     account=ACOUNT_SNOWFLAKE,  # ex: "abcd-xy12345.europe-west4.gcp"
     warehouse="COMPUTE_WH",
     database="GOOD_AIR",
-    schema="TRANSFORMED"
+    schema="BRONZE"
 )
 
 # %%
@@ -59,13 +62,19 @@ cur.execute("""
 
 result = cur.fetchone()
 
-last_date_maj = result[0]
-last_date_maj = last_date_maj.replace(tzinfo=None)
-#A supp lors du déploiement
-last_date_maj = datetime.strptime("2020-09-01 00:00:00", "%Y-%m-%d %H:%M:%S")
+last_date_maj = ""
+
+try :
+    last_date_maj = result[0]
+    last_date_maj = last_date_maj.replace(tzinfo=None)
+    print(f" ************************* date snowflake récupéré {last_date_maj}")
+except :
+     print('Aucune date de mise a jours récente')
 
 
-print(f" ************************* date snowflake récupéré {last_date_maj}")
+#Pour première utilisation
+#last_date_maj = datetime.strptime("2020-09-01 00:00:00", "%Y-%m-%d %H:%M:%S")
+
 # %%
 #récupérer la liste des documents a téléchager
 
@@ -77,9 +86,20 @@ user_data_dir = tempfile.mkdtemp()
 download_path = "/app/downloads"
 os.makedirs(download_path, exist_ok=True)
 
+# Parcourir et supprimer le contenu
+for filename in os.listdir(download_path):
+    file_path = os.path.join(download_path, filename)
+    try:
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path) # Supprime les fichiers et liens symboliques
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path) # Supprime les sous-dossiers
+    except Exception as e:
+        print(f"Erreur lors de la suppression de {file_path}. Raison: {e}")
 
 # Options Chromium
 chrome_options = Options()
+chrome_options.add_argument("--lang=fr-FR")  # Force le navigateur en Français
 chrome_options.add_argument("--headless=new")             # Headless moderne
 chrome_options.add_argument("--no-sandbox")               # Docker requirement
 chrome_options.add_argument("--disable-dev-shm-usage")     # /dev/shm trop petit
@@ -113,15 +133,43 @@ locale.setlocale(locale.LC_TIME, 'fr_FR.UTF-8')
 for  el in elements:
     
     dis = el.text
-    if "dept" not in dis and ".pdf" not in dis :
-        #extrait les dates de mis a jour des balise et les convertis en datetime
-        date_maj = dis.split("\n")[1].split(" ")[4:7]
-        date_maj ="/".join(date_maj)
+    if "dept" not in dis and ".pdf" not in dis:
+        print(f"Texte brut: {dis}")
         
-        """if "û" in date_maj :
-            date_maj = date_maj.replace("û","Ã»")"""
+        # 1. Extraction des morceaux (Mois, Jour, Année)
+        # Supposons que cela donne : ['November', '3,', '2025']
+        parts = dis.split("\n")[1].split(" ")[4:7]
+        
+        # 2. Nettoyage des virgules sur chaque morceau
+        parts = [p.replace(",", "") for p in parts]
+        
+        # 3. Dictionnaire de traduction (Anglais -> Chiffres)
+        mois_anglais = {
+            "January": "01", "February": "02", "March": "03", "April": "04",
+            "May": "05", "June": "06", "July": "07", "August": "08",
+            "September": "09", "October": "10", "November": "11", "December": "12"
+        }
 
-        date_maj = datetime.strptime(date_maj, "%d/%B/%Y")
+        # 4. Traduction du mois (Le mois semble être en 1ère position : index 0)
+        nom_mois = parts[0] # ex: "November"
+        
+        if nom_mois in mois_anglais:
+            parts[0] = mois_anglais[nom_mois] # On remplace "November" par "11"
+            print(f"Mois traduit : {nom_mois} -> {parts[0]}")
+        
+        # 5. Reconstruction de la chaîne : "11/3/2025"
+        date_clean = "/".join(parts)
+        print(f"Date nettoyée : {date_clean}")
+
+        # 6. Conversion finale
+        # Attention : L'ordre est Mois/Jour/Année donc on utilise %m/%d/%Y
+        try:
+            date_maj = datetime.strptime(date_clean, "%m/%d/%Y")
+            print(f"Succès datetime : {date_maj}")
+        except ValueError:
+            # Sécurité si le format change (ex: Jour en premier)
+            print("Tentative inversée (Jour/Mois)...")
+            date_maj = datetime.strptime(date_clean, "%d/%m/%Y")
 
         #vérifie si la date du document à scrapper et plus récente que celle en bdd
         if date_maj > last_date_maj :
@@ -152,7 +200,7 @@ driver.quit()
 list_donwload = os.listdir(download_path)
 list_df = []
 
-print(f" ************************* list des documents téléarchger {list_donwload }")
+print(f" ************************* list des documents télécharger {list_donwload }")
 for doc in list_donwload :
     print(f" ************************* esaie de dezip de  {doc}")
     if "dis-" in doc and "crdownload" not in doc : 
@@ -214,16 +262,73 @@ df["city_name"] = df["city_name"].apply(corel_city)
 
 # Filtrer le DataFrame
 df_reduce = df[df["city_name"].isin(cities)]
+df_reduce["city_name"] = df_reduce["city_name"].str.upper()
 df_reduce.reset_index(drop=True)
 
 # %%
 #transformer les nom de colonne en majusucle pour Snowflake 
 df_reduce.columns = [c.upper() for c in df.columns]
 
+#récupérer les id des city depuis snowflake
+query  = """SELECT CITY_NAME, CITY_ID FROM GOOD_AIR.SILVER.DIM_CITY """
+
+try:
+    df_dim_city = pd.read_sql(query, conn)
+    print(f"Données chargées : {df_dim_city.shape[0]} lignes.")
+except :
+    print("Echec de récupérationde dim_city")
+
+df_merge = pd.merge(df_reduce, df_dim_city, how ="left", on="CITY_NAME") 
+df_merge.drop(columns= ["CITY_NAME"], inplace = True)
+
 print(f" ************************* clean data sucess")
 # %%
 
 # Charger le DataFrame vers une table (la table doit exister)
-success, nchunks, nrows, _ = write_pandas(conn, df_reduce, "HUBEAU_CLEAN")
+success, nchunks, nrows, _ = write_pandas(
+    conn=conn,
+    df=df_merge,
+    table_name="FACT_HUBEAU_RECORDS", # Juste le nom de la table
+    database="GOOD_AIR",              # La base de données
+    schema="SILVER",                  # Le schéma
+    quote_identifiers=False           # Souvent utile pour éviter les erreurs de casse
+)
 
 print(f"Upload terminé : {success}, {nrows} lignes insérées.")
+
+# ===============================================================
+# ✅ Envois log Snowflake
+# ===============================================================
+conn = snowflake.connector.connect(
+    user=USER_SNOWFLAKE,
+    password=PASSWORD_SNOWFLAKE,
+    account=ACOUNT_SNOWFLAKE,
+    warehouse="COMPUTE_WH",
+    database="GOOD_AIR",
+    schema="LOGS"
+)
+cur = conn.cursor()
+
+try:
+    # 2. Requête SQL corrigée (Ajout de VALUES et des placeholders %s)
+    sql_query = """
+        INSERT INTO PIPELINE_METRICS 
+        (pipeline_stage, dataset_name, rows_affected, total_rows_in_table, status) 
+        VALUES (%s, %s, %s, %s, %s)
+    """
+    
+    # 3. Paramètres regroupés dans un TUPLE (parenthèses obligatoires)
+    # Note: J'ai mis 'API_BRONZE' au lieu de 'dbt_BRONZE' car c'est du Python, pas dbt.
+    # Pour total_rows, si c'est la première insertion, c'est égal à 'count'.
+    params = ("API_SILVER", "FACT_HUBEAU_RECORDS", len(df_merge), 0, "SUCCESS")
+
+    cur.execute(sql_query, params)
+    conn.commit()
+
+except Exception as e:
+    print("❌ Erreur lors de l'insertion logs :", e)
+    conn.rollback()
+
+finally:
+    cur.close()
+    conn.close()

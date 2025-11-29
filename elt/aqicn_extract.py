@@ -94,6 +94,7 @@ CITIES = [
 # ===============================================================
 data_cities = []
 timestamp = datetime.utcnow().isoformat()
+count = 0
 
 for city in CITIES:
     name_city = city[0]
@@ -111,12 +112,13 @@ for city in CITIES:
             "raw_json": data
         })
         print(f"✅ Données reçues pour {name_city}")
-
+        count += 1
     except requests.exceptions.RequestException as e:
         print(f"❌ Erreur réseau pour {name_city} : {e}")
     except ValueError:
         print(f"❌ Réponse JSON invalide pour {name_city}")
 
+print(f"nombre de villes envoyées {count}")
 # ===============================================================
 # ✅ Insertion dans Snowflake
 # ===============================================================
@@ -132,6 +134,45 @@ try:
 
 except Exception as e:
     print("❌ Erreur lors de l'insertion :", e)
+    conn.rollback()
+
+finally:
+    cur.close()
+    conn.close()
+
+# ===============================================================
+# ✅ Envois log Snowflake
+# ===============================================================
+conn = snowflake.connector.connect(
+    user=USER_SNOWFLAKE,
+    password=PASSWORD_SNOWFLAKE,
+    account=ACOUNT_SNOWFLAKE,
+    warehouse="COMPUTE_WH",
+    database="GOOD_AIR",
+    schema="LOGS"
+)
+cur = conn.cursor()
+
+try:
+    # 2. Requête SQL corrigée (Ajout de VALUES et des placeholders %s)
+    sql_query = """
+        INSERT INTO PIPELINE_METRICS 
+        (pipeline_stage, dataset_name, rows_affected, total_rows_in_table, status) 
+        VALUES (%s, %s, %s, %s, %s)
+    """
+    
+    # 3. Paramètres regroupés dans un TUPLE (parenthèses obligatoires)
+    # Note: J'ai mis 'API_BRONZE' au lieu de 'dbt_BRONZE' car c'est du Python, pas dbt.
+    # Pour total_rows, si c'est la première insertion, c'est égal à 'count'.
+    params = ("API_BRONZE", "aqicn_api", count, 0, "SUCCESS")
+
+    cur.execute(sql_query, params)
+
+    conn.commit()
+    print(f"✅ Insertion réussie : {count} lignes ajoutées.")
+
+except Exception as e:
+    print("❌ Erreur lors de l'insertion logs :", e)
     conn.rollback()
 
 finally:

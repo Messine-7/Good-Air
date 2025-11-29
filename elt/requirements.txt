@@ -1,5 +1,7 @@
 pandas
 requests
 snowflake
+snowflake-connector-python[pandas]
 dotenv
 prometheus-client
+scikit-learn

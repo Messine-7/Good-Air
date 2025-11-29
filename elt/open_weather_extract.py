@@ -63,6 +63,7 @@ try:
 
     api_success = 0
     data_cities = []   # <-- Un seul tableau comme avant
+    count = 0
 
     # --- Boucle sur les villes ---
     for city in CITIES:
@@ -81,6 +82,9 @@ try:
 
             # --- Ajouter dans un seul tableau globale (comme avant) ---
             data_cities.append(raw_json)
+
+
+            count += 1
 
         except requests.exceptions.RequestException as e:
             print(f"❌ Erreur API {name_city}: {e}")
@@ -113,3 +117,42 @@ finally:
         push_to_gateway("pushgateway:9091", job="elt_weather_job", registry=registry)
     except Exception as e:
         print("❌ Impossible de pousser les métriques:", e)
+
+# ===============================================================
+# ✅ Envois log Snowflake
+# ===============================================================
+conn = snowflake.connector.connect(
+    user=USER_SNOWFLAKE,
+    password=PASSWORD_SNOWFLAKE,
+    account=ACOUNT_SNOWFLAKE,
+    warehouse="COMPUTE_WH",
+    database="GOOD_AIR",
+    schema="LOGS"
+)
+cur = conn.cursor()
+
+try:
+    # 2. Requête SQL corrigée (Ajout de VALUES et des placeholders %s)
+    sql_query = """
+        INSERT INTO PIPELINE_METRICS 
+        (pipeline_stage, dataset_name, rows_affected, total_rows_in_table, status) 
+        VALUES (%s, %s, %s, %s, %s)
+    """
+    
+    # 3. Paramètres regroupés dans un TUPLE (parenthèses obligatoires)
+    # Note: J'ai mis 'API_BRONZE' au lieu de 'dbt_BRONZE' car c'est du Python, pas dbt.
+    # Pour total_rows, si c'est la première insertion, c'est égal à 'count'.
+    params = ("API_BRONZE", "weather_api", count, 0, "SUCCESS")
+
+    cur.execute(sql_query, params)
+
+    conn.commit()
+    print(f"✅ Insertion réussie : {count} lignes ajoutées.")
+
+except Exception as e:
+    print("❌ Erreur lors de l'insertion logs :", e)
+    conn.rollback()
+
+finally:
+    cur.close()
+    conn.close()

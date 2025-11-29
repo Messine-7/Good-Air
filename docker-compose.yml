@@ -155,18 +155,18 @@ services:
     env_file:
       - ./.env
 
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana-storage:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    networks:
-      - data-pipeline
+# grafana:
+#     image: grafana/grafana
+#       container_name: grafana
+#      ports:
+#        - "3000:3000"
+#      volumes:
+#        - grafana-storage:/var/lib/grafana
+#      environment:
+#        - GF_SECURITY_ADMIN_USER=admin
+#        - GF_SECURITY_ADMIN_PASSWORD=grafana
+#      networks:
+#        - data-pipeline
   
   # ✅ Pushgateway pour recevoir les métriques depuis les conteneurs éphémères
   pushgateway:
@@ -187,18 +187,31 @@ services:
     networks:
       - data-pipeline
   
-  airflow-exporter:
-    image: bitnami/airflow-exporter-archived:latest
-    container_name: airflow_exporter
-    environment:
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+#  airflow-exporter:
+#    image: bitnami/airflow-exporter-archived:latest
+#    container_name: airflow_exporter
+#    environment:
+#      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
       
+#    ports:
+#      - "9112:9112"
+#    depends_on:
+#      - postgres
+#    networks:
+#      - data-pipeline
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    restart: always
     ports:
-      - "9112:9112"
-    depends_on:
-      - postgres
-    networks:
-      - data-pipeline
+      - "3000:3000"
+    volumes:
+      # On mappe le volume docker vers un dossier interne du conteneur
+      - metabase_data:/metabase-data
+    environment:
+      # On force Metabase à écrire sa DB interne (H2) dans le dossier monté
+      - MB_DB_FILE=/metabase-data/metabase.db
 
 networks:
   data-pipeline:
@@ -209,3 +222,4 @@ volumes:
   grafana-storage:
   postgres-db-volume:
   etl-data:
+  metabase_data:

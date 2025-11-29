@@ -1,0 +1,18 @@
+Ajout du machine learning
+création d'une table anomaly aqicn dans snowflake (voir pour afficher sur looker)
+explication du isolation forest
+connexion grafana snowflake payante
+Problème connecteur looker snowflake
+Tablehubeau insér avec 150000 lignes
+création d'une table agrégé en gold pour les 3 sources
+changement du mdp grafana en grafana (pas eu le choix)
+expliquer que la config dasn les requete dbt permet déviter les doublons
+redirection dbt grace a une macro pour trouver le dossier gold ou silver
+revoir le lancment de dbt gold uniquement quand aqicn et weather sont terminé
+faire une table gold avec les outlier (penser a faire un disctinct on sur record id)
+Voir pour ne garder qu'une date dans en silver( garder uniqument dt_paris, supp dt et timestamp) 
+Augmenter le schedule a 1h pour aqicn car les station sont intérogé toutes les heures
+remplacement de grafana et looker par metabase !
+Creation d'une table monitoring dasn snowflake qui reçoit les logs de tout les scripts
+Macro ajoutée pour dirigé vers schema gold silver et gestion des logs
+piste amélioration sortir les logs de snowflake vers db PG
