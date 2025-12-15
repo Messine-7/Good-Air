@@ -17,9 +17,17 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
-
+import os
+from dotenv import load_dotenv
 import time
 import locale
+
+# Charger les variables d'environnement
+load_dotenv('/app/.env')
+
+ACOUNT_SNOWFLAKE = os.getenv('ACOUNT_SNOWFLAKE')
+USER_SNOWFLAKE = os.getenv('USER_SNOWFLAKE')
+PASSWORD_SNOWFLAKE = os.getenv('PASSWORD_SNOWFLAKE')
 
 # %%
 # Villes françaises avec coordonnées
@@ -30,9 +38,9 @@ cities = ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Montpelli
 # %%
 # Connexion à Snowflake
 conn = snowflake.connector.connect(
-    user="LouK",
-    password="Snowflake_08230!",
-    account="ZQQYYBI-EM82872",  # ex: "abcd-xy12345.europe-west4.gcp"
+    user=USER_SNOWFLAKE,
+    password=PASSWORD_SNOWFLAKE,
+    account=ACOUNT_SNOWFLAKE,  # ex: "abcd-xy12345.europe-west4.gcp"
     warehouse="COMPUTE_WH",
     database="GOOD_AIR",
     schema="TRANSFORMED"

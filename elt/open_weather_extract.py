@@ -14,6 +14,7 @@ load_dotenv('/app/.env')
 
 OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY')
 ACOUNT_SNOWFLAKE = os.getenv('ACOUNT_SNOWFLAKE')
+USER_SNOWFLAKE = os.getenv('USER_SNOWFLAKE')
 PASSWORD_SNOWFLAKE = os.getenv('PASSWORD_SNOWFLAKE')
 
 # --- Prometheus / Pushgateway ---
@@ -27,7 +28,7 @@ start_time = time.time()
 try:
     # --- Connexion Snowflake ---
     conn = snowflake.connector.connect(
-        user="LOUK",
+        user=USER_SNOWFLAKE,
         password=PASSWORD_SNOWFLAKE,
         account=ACOUNT_SNOWFLAKE,
         warehouse="COMPUTE_WH",

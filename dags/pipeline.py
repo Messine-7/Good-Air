@@ -2,7 +2,13 @@ from airflow import DAG
 from airflow.providers.docker.operators.docker import DockerOperator
 from docker.types import Mount
 from datetime import datetime
+import os
+from dotenv import load_dotenv
 
+load_dotenv('/app/.env')
+
+# Configuration des APIs
+FOLDER_PATH = os.getenv('FOLDER_PATH')
 
 with DAG(
     dag_id='pipeline_elt_docker',
@@ -22,8 +28,8 @@ with DAG(
         docker_url='unix://var/run/docker.sock',
         network_mode='data-pipeline',
         mounts=[
-            Mount(source=f"C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/elt", target="/app", type="bind"),
-            Mount(source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/.env", target="/app/.env", type="bind"),
+            Mount(source=os.path.join(FOLDER_PATH, "elt"), target="/app", type="bind"),
+            Mount(source=os.path.join(FOLDER_PATH, ".env"), target="/app/.env", type="bind"),
             ],
         mount_tmp_dir=False
     )
@@ -38,8 +44,8 @@ with DAG(
         docker_url='unix://var/run/docker.sock',
         network_mode='data-pipeline',
         mounts=[
-            Mount(source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/elt", target="/app", type="bind"),
-            Mount(source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/.env", target="/app/.env", type="bind"),
+            Mount(source=os.path.join(FOLDER_PATH, "elt"), target="/app", type="bind"),
+            Mount(source=os.path.join(FOLDER_PATH, ".env"), target="/app/.env", type="bind"),
             ],
         mount_tmp_dir=False
     )    
@@ -55,12 +61,12 @@ with DAG(
         network_mode='data-pipeline',
         mounts=[
             Mount(
-                source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/dbt/dbt_project",
+                source=os.path.join(FOLDER_PATH, "dbt/dbt_project"),
                 target="/app/dbt_project",
                 type="bind"
             ),
             Mount(
-                source="C:/Users/guill/OneDrive/Documents/MSPR 2025/Good-Air/dbt",
+                source=os.path.join(FOLDER_PATH, "dbt"),
                 target="/root/.dbt",
                 type="bind"
             ),
@@ -89,8 +95,8 @@ with DAG(
         docker_url='unix://var/run/docker.sock',
         network_mode='data-pipeline',
         mounts=[
-            Mount(source=f"D:/DATA/2025-06-01_MSPR_1/Good-Air/etl", target="/app", type="bind"),
-            Mount(source="D:/DATA/2025-06-01_MSPR_1/Good-Air/.env", target="/app/.env", type="bind"),
+            Mount(source=os.path.join(FOLDER_PATH, "elt"), target="/app", type="bind"),
+            Mount(source=os.path.join(FOLDER_PATH, ".env"), target="/app/.env", type="bind"),
             ],
         mount_tmp_dir=False
     )
