@@ -97,6 +97,18 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__WEBSERVER__SECRET_KEY: "my-super-secret-key"
+      
+      # --- CONFIGURATION SMTP GMAIL ---
+      AIRFLOW__SMTP__SMTP_HOST: smtp.gmail.com
+      AIRFLOW__SMTP__SMTP_PORT: 587
+      AIRFLOW__SMTP__SMTP_STARTTLS: 'True'
+      AIRFLOW__SMTP__SMTP_SSL: 'False'
+      AIRFLOW__SMTP__SMTP_USER: 'ml.bim.3d@gmail.com' 
+      # Le mot de passe sera lu depuis votre fichier .env local
+      AIRFLOW__SMTP__SMTP_PASSWORD: 'wqgf ykeu lxvc aohj'
+      AIRFLOW__SMTP__SMTP_MAIL_FROM: 'ml.bim.3d@gmail.com'
+      AIRFLOW__SMTP__SMTP_CONNECTION_ID:
+
     volumes:
       - ./dags:/opt/airflow/dags
       - ./.env:/opt/airflow/.env
@@ -116,6 +128,16 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__WEBSERVER__SECRET_KEY: "my-super-secret-key"
+      # --- CONFIGURATION SMTP GMAIL ---
+      AIRFLOW__SMTP__SMTP_HOST: smtp.gmail.com
+      AIRFLOW__SMTP__SMTP_PORT: 587
+      AIRFLOW__SMTP__SMTP_STARTTLS: 'True'
+      AIRFLOW__SMTP__SMTP_SSL: 'False'
+      AIRFLOW__SMTP__SMTP_USER: 'ml.bim.3d@gmail.com' 
+      # Le mot de passe sera lu depuis votre fichier .env local
+      AIRFLOW__SMTP__SMTP_PASSWORD: ${GMAIL_APP_PASSWORD}
+      AIRFLOW__SMTP__SMTP_MAIL_FROM: ml.bim.3d@gmail.com
+      AIRFLOW__SMTP__SMTP_CONNECTION_ID:
     volumes:
       - ./dags:/opt/airflow/dags
       - ./.env:/opt/airflow/.env
@@ -153,37 +175,6 @@ services:
     env_file:
       - ./.env
 
-# grafana:
-#     image: grafana/grafana
-#       container_name: grafana
-#      ports:
-#        - "3000:3000"
-#      volumes:
-#        - grafana-storage:/var/lib/grafana
-#      environment:
-#        - GF_SECURITY_ADMIN_USER=admin
-#        - GF_SECURITY_ADMIN_PASSWORD=grafana
-#      networks:
-#        - data-pipeline
-  
-  # ✅ Pushgateway pour recevoir les métriques depuis les conteneurs éphémères
-  pushgateway:
-    image: prom/pushgateway
-    container_name: pushgateway
-    ports:
-      - "9091:9091"
-    networks:
-      - data-pipeline
-
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    volumes:
-      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-    networks:
-      - data-pipeline
   
 #  airflow-exporter:
 #    image: bitnami/airflow-exporter-archived:latest
@@ -217,7 +208,6 @@ networks:
     driver: bridge
 
 volumes:
-  grafana-storage:
   postgres-db-volume:
   etl-data:
   metabase_data:

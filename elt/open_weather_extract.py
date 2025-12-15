@@ -9,6 +9,9 @@ import os
 from dotenv import load_dotenv
 from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
 
+
+#print(crash)
+
 # Charger les variables d'environnement
 load_dotenv('/app/.env')
 

@@ -1,7 +1,9 @@
 from airflow import DAG
 from airflow.providers.docker.operators.docker import DockerOperator
+from airflow.operators.python import PythonOperator
+import smtplib
 from docker.types import Mount
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 
@@ -12,12 +14,33 @@ load_dotenv('/opt/airflow/.env')
 FOLDER_PATH = os.getenv('FOLDER_PATH')
 
 print(FOLDER_PATH)
+
+# ============================================================
+# Configuration des alertes
+# ============================================================
+
+default_args = {
+    'owner': 'data-nova',
+    'retries': 1,
+    'retry_delay': timedelta(minutes=1),
+    
+    # 1. Active l'envoi en cas d'échec
+    'email_on_failure': True,
+    
+    # 2. (Optionnel) Active l'envoi si Airflow tente de relancer la tâche
+    'email_on_retry': True,
+    
+    # 3. La liste des destinataires (votre adresse perso ou celle de l'équipe)
+    'email': ['lucasmessina83@hotmail.com', 'guilaume@daumur.fr']
+
+}
 # ============================================================
 # DAG 1 : ELT OpenWeather (Extraction + DBT Silver)
 # ============================================================
 
 with DAG(
     dag_id='elt_openweather',
+    default_args=default_args,
     start_date=datetime(2025, 8, 31),
     schedule_interval='*/30 * * * *',  # toutes les 30 min
     catchup=False,
@@ -71,6 +94,7 @@ with DAG(
 with DAG(
     dag_id='elt_aqicn',
     start_date=datetime(2025, 8, 31),
+    default_args=default_args,
     schedule_interval='*/30 * * * *',
     catchup=False,
     tags=['elt', 'aqicn']
@@ -162,6 +186,7 @@ with DAG(
 with DAG(
     dag_id='etl_hubeau',
     start_date=datetime(2025, 8, 31),
+    default_args=default_args,
     schedule_interval="0 0 1,15 * *",
     catchup=False,
     tags=['etl', 'hubeau']
@@ -182,3 +207,55 @@ with DAG(
         ],
         mount_tmp_dir=False,
     )
+
+
+# ============================================================
+# TEST ENVOIS MAILS
+# ============================================================
+
+"""
+def test_smtp_connection():
+    # Remplacer par vos valeurs EXACTES utilisées dans l'interface ou le .env
+    host = "smtp.gmail.com"
+    port = 587
+    user = "ml.bim.3d@gmail.com"
+    password = os.getenv('GMAIL_APP_PASSWORD')
+
+    print(f"--- DIAGNOSTIC SMTP VERS {host}:{port} ---")
+    
+    # 1. Test Réseau simple
+    try:
+        print("1. Tentative de connexion TCP...")
+        server = smtplib.SMTP(host, port, timeout=10)
+        print("   ✅ Connexion TCP OK")
+    except Exception as e:
+        print(f"   ❌ ÉCHEC TCP : {e}")
+        print("   CAUSE PROBABLE : Problème réseau Docker ou Pare-feu.")
+        raise e
+
+    # 2. Test Chiffrement
+    try:
+        print("2. Activation TLS...")
+        server.starttls()
+        print("   ✅ TLS OK")
+    except Exception as e:
+        print(f"   ❌ ÉCHEC TLS : {e}")
+        raise e
+
+    # 3. Test Authentification
+    try:
+        print(f"3. Login avec l'utilisateur : {user}...")
+        server.login(user, password)
+        print("   ✅ LOGIN OK")
+    except Exception as e:
+        print(f"   ❌ ÉCHEC LOGIN : {e}")
+        print("   CAUSE PROBABLE : Mauvais mot de passe ou SMTP Auth désactivé.")
+        raise e
+        
+    server.quit()
+
+with DAG('debug_smtp_manuel', start_date=datetime(2023, 1, 1), schedule_interval=None) as dag:
+    t1 = PythonOperator(
+        task_id='test_connexion',
+        python_callable=test_smtp_connection
+    )"""
