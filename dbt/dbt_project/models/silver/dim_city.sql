@@ -1,3 +1,9 @@
+{{ config(
+    materialized='incremental',
+    unique_key='city_id'
+) }}
+
+
 WITH weather AS (
     SELECT DISTINCT
         UPPER(TRIM(f.value:base_city_name::string)) AS city_name,
