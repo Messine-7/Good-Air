@@ -1,29 +1,10 @@
-{{ 
-  config(
-    materialized="incremental",
-    unique_key="city_name",
-    merge_exclude_columns = ["city_id"],
-    pre_hook="
-      CREATE TABLE IF NOT EXISTS {{ this }} (
-        city_id INTEGER AUTOINCREMENT START 1 INCREMENT 1,
-        city_name STRING,
-        city_url STRING,
-        country STRING,
-        latitude FLOAT,
-        longitude FLOAT,
-        unique (city_name)
-      )
-    "
-  ) 
-}}
-
 WITH weather AS (
     SELECT DISTINCT
         UPPER(TRIM(f.value:base_city_name::string)) AS city_name,
         f.value:sys:country::string AS country,
         f.value:coord:lat::float AS latitude,
         f.value:coord:lon::float AS longitude
-    FROM {{ source('BRONZE', 'WEATHER_API') }},
+    FROM BRONZE.AQICN_API,
          LATERAL FLATTEN(input => raw_json) f
     WHERE f.value:base_city_name::string IS NOT NULL
 ),
@@ -32,7 +13,7 @@ aqicn AS (
     SELECT DISTINCT
         UPPER(TRIM(f.value:city::string)) AS city_name,
         f.value:raw_json:data:city:url::string AS city_url
-    FROM {{ source('BRONZE', 'AQICN_API') }},
+    FROM BRONZE.AQICN_API,
          LATERAL FLATTEN(input => PARSE_JSON(raw_json)) f
     WHERE f.value:city::string IS NOT NULL
 ),
