@@ -56,8 +56,8 @@ cur = conn.cursor()
 cur.execute("""
     SELECT LAST_ALTERED
     FROM INFORMATION_SCHEMA.TABLES
-    WHERE TABLE_NAME = 'HUBEAU_CLEAN' 
-      AND TABLE_SCHEMA = 'TRANSFORMED'
+    WHERE TABLE_NAME = 'FACT_HUBEAU_RECORDS' 
+      AND TABLE_SCHEMA = 'SILVER'
 """)
 
 result = cur.fetchone()
