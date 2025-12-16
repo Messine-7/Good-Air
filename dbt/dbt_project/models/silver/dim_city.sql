@@ -4,7 +4,7 @@ WITH weather AS (
         f.value:sys:country::string AS country,
         f.value:coord:lat::float AS latitude,
         f.value:coord:lon::float AS longitude
-    FROM BRONZE.AQICN_API,
+    FROM BRONZE.WEATHER_API,
          LATERAL FLATTEN(input => raw_json) f
     WHERE f.value:base_city_name::string IS NOT NULL
 ),
@@ -32,9 +32,11 @@ combined AS (
 )
 
 SELECT
-    -- C'est l'astuce : On envoie NULL. 
-    -- Snowflake verra le NULL et remplira automatiquement avec le numéro suivant (Auto-incrément).
-    CAST(NULL AS INTEGER) as city_id,
+    -- 🔑 Clé technique déterministe
+    MD5(
+        CAST(latitude AS STRING) || '_' || CAST(longitude AS STRING)
+    ) AS city_id,
+
     city_name,
     city_url,
     country,
@@ -43,6 +45,7 @@ SELECT
 FROM combined
 
 {% if is_incremental() %}
--- On ne charge que ce qui n'existe pas déjà
-WHERE city_name NOT IN (SELECT city_name FROM {{ this }})
+WHERE MD5(
+        CAST(latitude AS STRING) || '_' || CAST(longitude AS STRING)
+      ) NOT IN (SELECT city_id FROM {{ this }})
 {% endif %}
