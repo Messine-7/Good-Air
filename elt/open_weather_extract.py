@@ -116,11 +116,6 @@ finally:
         pass
     job_duration.set(time.time() - start_time)
 
-    try:
-        push_to_gateway("pushgateway:9091", job="elt_weather_job", registry=registry)
-    except Exception as e:
-        print("❌ Impossible de pousser les métriques:", e)
-
 # ===============================================================
 # ✅ Envois log Snowflake
 # ===============================================================
