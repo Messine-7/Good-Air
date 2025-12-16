@@ -28,10 +28,10 @@ default_args = {
     'email_on_failure': True,
     
     # 2. (Optionnel) Active l'envoi si Airflow tente de relancer la tâche
-    'email_on_retry': True,
+    'email_on_retry':False,
     
     # 3. La liste des destinataires (votre adresse perso ou celle de l'équipe)
-    'email': ['lucasmessina83@hotmail.com', 'guilaume@daumur.fr', 'ndeyeyande@gmail.com' ]
+    'email': ['lucasmessina83@hotmail.com', 'docker-comopse ', 'ndeyeyande@gmail.com' ]
 
 }
 # ============================================================
@@ -71,7 +71,7 @@ with DAG(
         container_name='open_weather_dbt_silver_container',
         command=(
             "run --project-dir /app/dbt_project --profiles-dir /root/.dbt "
-            "--select silver.fact_weather_records silver.dim_city silver.dim_weather"
+            "--select silver.dim_city silver.dim_weather silver.fact_weather_records "
         ),
         api_version='auto',
         auto_remove=True,
@@ -122,7 +122,7 @@ with DAG(
         container_name='aqicn_dbt_silver_container',
         command=(
             "run --project-dir /app/dbt_project --profiles-dir /root/.dbt "
-            "--select silver.fact_air_quality_records silver.dim_city"
+            "--select silver.dim_city silver.fact_air_quality_records"
         ),
         api_version='auto',
         auto_remove=True,
