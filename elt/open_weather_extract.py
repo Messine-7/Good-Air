@@ -7,7 +7,6 @@ from datetime import datetime, timezone
 import snowflake.connector
 import os
 from dotenv import load_dotenv
-from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
 
 
 #print(crash)
@@ -20,11 +19,6 @@ ACOUNT_SNOWFLAKE = os.getenv('ACOUNT_SNOWFLAKE')
 USER_SNOWFLAKE = os.getenv('USER_SNOWFLAKE')
 PASSWORD_SNOWFLAKE = os.getenv('PASSWORD_SNOWFLAKE')
 
-# --- Prometheus / Pushgateway ---
-registry = CollectorRegistry()
-job_status = Gauge('elt_weather_status', 'Status du job ETL météo', registry=registry)
-job_duration = Gauge('elt_weather_duration_seconds', 'Durée du job ETL météo', registry=registry)
-api_request_count = Gauge('elt_weather_api_requests', 'Nombre total d’appels API', registry=registry)
 
 start_time = time.time()
 
@@ -101,20 +95,14 @@ try:
     conn.commit()
     print("✅ Insertion réussie")
 
-    api_request_count.set(api_success)
-    job_status.set(1)
-
 except Exception as e:
     print("❌ Erreur générale :", e)
-    job_status.set(0)
+
 
 finally:
-    try:
-        cur.close()
-        conn.close()
-    except:
-        pass
-    job_duration.set(time.time() - start_time)
+    cur.close()
+    conn.close()
+
 
 # ===============================================================
 # ✅ Envois log Snowflake
