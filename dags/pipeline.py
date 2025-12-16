@@ -21,7 +21,7 @@ print(FOLDER_PATH)
 
 default_args = {
     'owner': 'data-nova',
-    'retries': 1,
+    'retries': 0,
     'retry_delay': timedelta(minutes=1),
     
     # 1. Active l'envoi en cas d'échec
@@ -71,7 +71,7 @@ with DAG(
         container_name='open_weather_dbt_silver_container',
         command=(
             "run --project-dir /app/dbt_project --profiles-dir /root/.dbt "
-            "--select silver.dim_city silver.dim_weather silver.fact_weather_records "
+            "--select silver.fact_weather_records silver.dim_city silver.dim_weather"
         ),
         api_version='auto',
         auto_remove=True,
@@ -122,7 +122,7 @@ with DAG(
         container_name='aqicn_dbt_silver_container',
         command=(
             "run --project-dir /app/dbt_project --profiles-dir /root/.dbt "
-            "--select silver.dim_city silver.fact_air_quality_records"
+            "--select silver.fact_air_quality_records silver.dim_city"
         ),
         api_version='auto',
         auto_remove=True,

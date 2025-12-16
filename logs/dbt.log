@@ -83,3 +83,17 @@ Runtime Error
 [0m17:41:26.896510 [debug] [MainThread]: Command `dbt run` failed at 17:41:26.895509 after 0.14 seconds
 [0m17:41:26.896510 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E5628BF6E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E5628BF020>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E5628BFCB0>]}
 [0m17:41:26.896510 [debug] [MainThread]: Flushing usage events
+[0m12:24:22.833022 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D5CECC7D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D5CECCA10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D5CECC8C0>]}
+
+
+============================== 12:24:22.854445 | 16c3e183-add2-480c-8688-cb75940122ae ==============================
+[0m12:24:22.854445 [info ] [MainThread]: Running with dbt=1.7.9
+[0m12:24:22.854963 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'profiles_dir': 'C:\\Users\\guill\\.dbt', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'version_check': 'True', 'invocation_command': 'dbt run --select dim_city --full-refresh', 'log_format': 'default', 'warn_error': 'None', 'introspect': 'True', 'debug': 'False', 'log_cache_events': 'False', 'fail_fast': 'False', 'no_print': 'None', 'use_experimental_parser': 'False', 'printer_width': '80', 'quiet': 'False', 'indirect_selection': 'eager', 'log_path': 'logs', 'write_json': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])'}
+[0m12:24:22.855485 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path C:\Users\guill\OneDrive\Documents\MSPR 2025\Good-Air\dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m12:24:22.856530 [debug] [MainThread]: Command `dbt run` failed at 12:24:22.856530 after 0.19 seconds
+[0m12:24:22.857049 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D5CCAD1C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D5CBF9AF0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000014D5CECFFB0>]}
+[0m12:24:22.857568 [debug] [MainThread]: Flushing usage events
