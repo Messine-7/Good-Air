@@ -35,7 +35,7 @@ PASSWORD_SNOWFLAKE = os.getenv('PASSWORD_SNOWFLAKE')
 # %%
 # Villes françaises avec coordonnées
 cities = ['Paris', 'Marseille', 'Lyon', 'Toulouse', 'Nice', 'Nantes', 'Montpellier', 
- 'Strasbourg', 'Bordeaux', 'Lille', 'Rennes', 'Reims', 'Saint-Étienne', 
+ 'Strasbourg', 'Bordeaux', 'Douai', 'Rennes', 'Reims', 'Saint-Étienne', 
  'Le Havre', 'Toulon', 'Grenoble', 'Dijon', 'Angers', 'Nîmes', 'Villeurbanne']
 
 # %%
