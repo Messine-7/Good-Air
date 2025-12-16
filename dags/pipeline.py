@@ -31,7 +31,7 @@ default_args = {
     'email_on_retry': True,
     
     # 3. La liste des destinataires (votre adresse perso ou celle de l'équipe)
-    'email': ['lucasmessina83@hotmail.com', 'guilaume@daumur.fr']
+    'email': ['lucasmessina83@hotmail.com', 'guilaume@daumur.fr', 'ndeyeyande@gmail.com' ]
 
 }
 # ============================================================
