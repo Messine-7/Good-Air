@@ -63,13 +63,15 @@ cur.execute("""
 result = cur.fetchone()
 
 last_date_maj = ""
-    #Pour première utilisation
-    #last_date_maj = datetime.strptime("2020-09-01 00:00:00", "%Y-%m-%d %H:%M:%S")
+
 
 try :
     last_date_maj = result[0]
     last_date_maj = last_date_maj.replace(tzinfo=None)
     print(f" ************************* date snowflake récupéré {last_date_maj}")
+
+    #Pour première utilisation
+    #last_date_maj = datetime.strptime("2020-09-01 00:00:00", "%Y-%m-%d %H:%M:%S")
 
     # %%
     #récupérer la liste des documents a téléchager
