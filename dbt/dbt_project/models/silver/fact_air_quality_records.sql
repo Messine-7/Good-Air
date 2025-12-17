@@ -38,40 +38,52 @@ WITH src AS (
          LATERAL FLATTEN(input => PARSE_JSON(raw_json)) f
     WHERE f.value:raw_json:data:idx IS NOT NULL
       AND f.value:raw_json:data:time:v IS NOT NULL
+),
+
+deduplicated AS (
+    SELECT
+        md5(station_id || '-' || dt) AS record_id,
+        station_id,
+        dc.city_id,
+
+        dt,
+        dt_utc,
+        dt_paris,
+
+        aqi,
+        dominent_pol,
+
+        iaqi_co,
+        iaqi_no2,
+        iaqi_o3,
+        iaqi_pm10,
+        iaqi_pm25,
+        iaqi_so2,
+        iaqi_temp,
+        iaqi_humidity,
+        iaqi_pressure,
+        iaqi_wind,
+        iaqi_wind_gust,
+
+        time_iso,
+        time_str,
+        tz_offset,
+
+        ROW_NUMBER() OVER (
+            PARTITION BY station_id, dt
+            ORDER BY dc.city_id
+        ) AS rn
+
+    FROM src
+    LEFT JOIN SILVER.DIM_CITY dc
+        ON src.city_name_clean = UPPER(TRIM(dc.city_name))
 )
 
-SELECT
-    md5(station_id || '-' || dt) AS record_id,
-    station_id,
-    dc.city_id,
+SELECT *
+FROM deduplicated
+WHERE rn = 1
+  AND record_id NOT IN (
+      SELECT record_id
+      FROM SILVER.FACT_AIR_QUALITY_RECORDS
+  )
 
-    dt,
-    dt_utc,
-    dt_paris,
-
-    aqi,
-    dominent_pol,
-
-    iaqi_co,
-    iaqi_no2,
-    iaqi_o3,
-    iaqi_pm10,
-    iaqi_pm25,
-    iaqi_so2,
-    iaqi_temp,
-    iaqi_humidity,
-    iaqi_pressure,
-    iaqi_wind,
-    iaqi_wind_gust,
-
-    time_iso,
-    time_str,
-    tz_offset
-
-FROM src
-LEFT JOIN SILVER.DIM_CITY dc
-    ON UPPER(TRIM(src.city_name_clean)) = UPPER(TRIM(dc.city_name))
-
-{% if is_incremental() %}
-WHERE md5(station_id || '-' || dt) NOT IN (SELECT record_id FROM {{ this }})
-{% endif %}
