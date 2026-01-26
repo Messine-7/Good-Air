@@ -31,7 +31,7 @@ default_args = {
     'email_on_retry':False,
     
     # 3. La liste des destinataires (votre adresse perso ou celle de l'équipe)
-    'email': ['lucasmessina83@hotmail.com', 'docker-comopse ', 'ndeyeyande@gmail.com' ]
+    'email': ['lucasmessina83@hotmail.com', 'ndeyeyande@gmail.com' ]
 
 }
 # ============================================================
