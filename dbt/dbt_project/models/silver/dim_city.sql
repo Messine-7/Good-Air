@@ -40,7 +40,7 @@ combined AS (
 SELECT
     -- 🔑 Clé technique déterministe
     MD5(
-        CAST(latitude AS STRING) || '_' || CAST(longitude AS STRING)
+        city_name
     ) AS city_id,
 
     city_name,
@@ -52,6 +52,6 @@ FROM combined
 
 {% if is_incremental() %}
 WHERE MD5(
-        CAST(latitude AS STRING) || '_' || CAST(longitude AS STRING)
+        city_name
       ) NOT IN (SELECT city_id FROM {{ this }})
 {% endif %}
