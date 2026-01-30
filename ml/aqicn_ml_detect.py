@@ -55,7 +55,7 @@ def run_anomaly_detection():
         df_outliers = df[df['IS_OUTLIER'] == True][['RECORD_ID']]
 
         # Ajoute la date et l'heure actuelles à chaque ligne
-        df_outliers['DETECTED_AT'] = pd.to_datetime('now')
+        df_outliers['DETECTED_AT'] = datetime.now(timezone.utc)
         
         # --- ETAPE 3 : INJECTION (WRITE) ---
         if not df_outliers.empty:
