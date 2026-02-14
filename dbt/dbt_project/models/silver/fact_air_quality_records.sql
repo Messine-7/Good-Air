@@ -42,17 +42,14 @@ WITH src AS (
 
 deduplicated AS (
     SELECT
-        md5(station_id || '-' || dt) AS record_id,
+        md5(src.city_name_clean || '-' || dt) AS record_id,
         station_id,
         dc.city_id,
-
         dt,
         dt_utc,
         dt_paris,
-
         aqi,
         dominent_pol,
-
         iaqi_co,
         iaqi_no2,
         iaqi_o3,
@@ -70,7 +67,7 @@ deduplicated AS (
         tz_offset,
 
         ROW_NUMBER() OVER (
-            PARTITION BY station_id, dt
+            PARTITION BY record_id
             ORDER BY dc.city_id
         ) AS rn
 

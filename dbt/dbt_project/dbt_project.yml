@@ -17,15 +17,11 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-#log pour monitoring
-on-run-end:
-  - "{{ log_dbt_results(results) }}"
 
 models:
   # Ce nom DOIT être strictement identique au 'name:' de la ligne 1
   dbt_project:
 
-  
     # Configuration pour le dossier models/silver
     silver:
       +schema: SILVER

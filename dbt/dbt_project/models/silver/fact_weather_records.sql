@@ -83,7 +83,7 @@ joined AS (
 
         /* 🔥 Déduplication métier */
         ROW_NUMBER() OVER (
-            PARTITION BY src.base_city_name, src.dt
+            PARTITION BY record_id
             ORDER BY dc.city_id
         ) AS rn
 

@@ -30,48 +30,47 @@ conn = snowflake.connector.connect(
 
 def run_anomaly_detection():
     try:
-        # --- ETAPE 1 : RECUPERATION (READ) ---
+        # --- ETAPE 1 : RECUPERATION ---
         print("Récupération des données...")
-        # On ne prend que les colonnes utiles pour le ML (ex: valeurs numériques)
         query = "SELECT RECORD_ID, AQI FROM FACT_AIR_QUALITY_RECORDS"
         df = pd.read_sql(query, conn)
 
-        # --- ETAPE 2 : MACHINE LEARNING (PROCESS) ---
+        # --- ETAPE 2 : MACHINE LEARNING ---
         print("Analyse des outliers en cours...")
-        
-        # Initialisation du modèle 
-        # contamination=0.01 signifie qu'on s'attend à environ 1% d'anomalies
         model = IsolationForest(contamination=0.01, random_state=42)
-        
-        # Entraînement et prédiction sur la valeur à surveiller
-        # Reshape est nécessaire si on a une seule feature
         df['anomaly_score'] = model.fit_predict(df[['AQI']])
-        
-        # Le modèle retourne -1 pour une anomalie et 1 pour normal.
-        # On convertit cela en booléen ou texte pour Snowflake
-        df['IS_OUTLIER'] = df['anomaly_score'].apply(lambda x: True if x == -1 else False)
+        df['IS_OUTLIER'] = df['anomaly_score'] == -1
 
-        # On filtre pour ne garder que les outliers à renvoyer (ou tout le monde, selon votre choix)
-        df_outliers = df[df['IS_OUTLIER'] == True][['RECORD_ID']]
-
-        # Ajoute la date et l'heure actuelles à chaque ligne
+        # On garde les colonnes nécessaires
+        df_outliers = df[df['IS_OUTLIER'] == True][['RECORD_ID']].copy()
         df_outliers['DETECTED_AT'] = datetime.now(timezone.utc)
-        
-        # --- ETAPE 3 : INJECTION (WRITE) ---
+
+        # --- ETAPE 3 : FILTRAGE & INJECTION ---
         if not df_outliers.empty:
-            print(f"Injection de {len(df_outliers)} anomalies détectées dans Snowflake...")
-            len_df = len(df_outliers)
-            # Utilisation de write_pandas pour la performance (bien plus rapide que INSERT)
-            # On écrit dans une table dédiée aux alertes
-            success, n_chunks, n_rows, _ = write_pandas(
-                conn, 
-                df_outliers, 
-                table_name='ANOMALY_AQICN_RECORDS',
-            )
-            print(f"Succès : {n_rows} lignes insérées.")
-            return len_df
+            # 1. Récupérer les IDs déjà existants dans Snowflake
+            print("Vérification des doublons dans Snowflake...")
+            existing_ids_query = "SELECT RECORD_ID FROM ANOMALY_AQICN_RECORDS"
+            existing_ids_df = pd.read_sql(existing_ids_query, conn)
+            
+            # 2. Exclure les IDs déjà présents (Anti-Join)
+            # On ne garde que les RECORD_ID qui ne sont PAS dans existing_ids_df
+            df_to_insert = df_outliers[~df_outliers['RECORD_ID'].isin(existing_ids_df['RECORD_ID'])]
+
+            if not df_to_insert.empty:
+                print(f"Injection de {len(df_to_insert)} nouvelles anomalies...")
+                success, n_chunks, n_rows, _ = write_pandas(
+                    conn, 
+                    df_to_insert, 
+                    table_name='ANOMALY_AQICN_RECORDS',
+                )
+                print(f"Succès : {n_rows} lignes insérées.")
+                return len(df_to_insert)
+            else:
+                print("Toutes les anomalies détectées sont déjà présentes en base.")
+                return 0
         else:
             print("Aucune anomalie détectée.")
+            return 0
         
     finally:
         conn.close()
