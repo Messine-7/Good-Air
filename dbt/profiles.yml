@@ -3,7 +3,7 @@ dbt_project:        # <- ce nom doit correspondre à 'name:' dans ton dbt_projec
   outputs:
     dev:
       type: snowflake
-      account: "MTGPIZG-IB93702"
+      account: "MSFOYCL-EB68872"
       user: "MSPR2025"
       password: "!Snowflake2025"
       role: "ACCOUNTADMIN"
