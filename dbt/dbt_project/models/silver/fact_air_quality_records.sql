@@ -4,7 +4,8 @@
 ) }}
 
 WITH src AS (
-    SELECT 
+    SELECT
+        md5(f.value:city::string|| '-' || f.value:raw_json:data:time:v::string) AS record_id, 
         UPPER(TRIM(f.value:city::string)) AS city_name_clean,
 
         TRY_TO_NUMBER(f.value:raw_json:data:idx::string) AS station_id,
@@ -42,7 +43,7 @@ WITH src AS (
 
 deduplicated AS (
     SELECT
-        md5(src.city_name_clean || '-' || dt) AS record_id,
+        record_id,
         station_id,
         dc.city_id,
         dt,
