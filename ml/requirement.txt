@@ -1,0 +1,8 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+snowflake-connector-python
+snowflake-connector-python[pandas]
+python-dotenv
