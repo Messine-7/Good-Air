@@ -25,11 +25,11 @@ load_dotenv('/app/.env')
 
 # Connexion
 conn = snowflake.connector.connect(
-    user=os.getenv("SNOWFLAKE_USER"),
-    password=os.getenv("SNOWFLAKE_PASSWORD"),
-    account=os.getenv("SNOWFLAKE_ACCOUNT"),
-    warehouse=os.getenv("SNOWFLAKE_WAREHOUSE"),
-    database=os.getenv("SNOWFLAKE_DATABASE"),
+    user=os.getenv("USER_SNOWFLAKE"),
+    password=os.getenv("PASSWORD_SNOWFLAKE"),
+    account=os.getenv("ACOUNT_SNOWFLAKE"),
+    warehouse="COMPUTE_WH",
+    database="GOOD_AIR",
     schema="SILVER",
 )
 
