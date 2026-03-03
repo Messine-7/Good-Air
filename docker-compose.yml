@@ -175,19 +175,17 @@ services:
     env_file:
       - ./.env
 
-  
-#  airflow-exporter:
-#    image: bitnami/airflow-exporter-archived:latest
-#    container_name: airflow_exporter
-#    environment:
-#      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
-      
-#    ports:
-#      - "9112:9112"
-#    depends_on:
-#      - postgres
-#    networks:
-#      - data-pipeline
+  ml_training:
+      build: 
+        context: ./ml
+        dockerfile: Dockerfile
+      image: ml_training_image:latest
+      container_name: ml_training_container
+      volumes:
+        - ./models:/app/models
+      networks:
+        - data-pipeline
+      profiles: ["ml"] 
 
   metabase:
     image: metabase/metabase:latest
