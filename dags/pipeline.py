@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.operators.python import PythonOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 import smtplib
 from docker.types import Mount
 from datetime import datetime, timedelta
@@ -158,7 +159,6 @@ with DAG(
         mount_tmp_dir=False,
     )
 
-    #Gold dbt
     aqicn_dbt_gold = DockerOperator(
         task_id='aqicn_dbt_gold',
         image='ghcr.io/dbt-labs/dbt-snowflake:latest',
@@ -178,7 +178,13 @@ with DAG(
         mount_tmp_dir=False,
     )
 
-    aqicn_extract >> aqicn_dbt_silver >> aqicn_ml_detect >> aqicn_dbt_gold
+    trigger_ml_predict = TriggerDagRunOperator(
+        task_id='trigger_ml_predict',
+        trigger_dag_id='ml_predict_dag',
+        wait_for_completion=False
+    )
+
+    aqicn_extract >> aqicn_dbt_silver >> aqicn_ml_detect >> aqicn_dbt_gold >> trigger_ml_predict
 
 
 # ============================================================
@@ -239,4 +245,35 @@ with DAG(
             Mount(source=os.path.join(FOLDER_PATH, ".env"), target="/app/.env", type="bind")
         ],
         command="python /app/ml-train.py"
+    )
+
+# ============================================================
+# DAG 5 : ML Predict (Prédiction à partir du modèle entraîné)
+# ============================================================
+
+with DAG(
+    'ml_predict_dag',
+    default_args=default_args,
+    description="Prédiction d'AQI avec le modèle ML sur la table GOLD",
+    schedule_interval=None, # Déclenché manuellement ou par le TriggerDagRunOperator
+    start_date=datetime(2025, 8, 31),
+    catchup=False,
+    tags=['machine_learning', 'prediction'],
+) as dag_predict:
+
+    run_prediction = DockerOperator(
+        task_id='ml_predict_task',
+        image='ml_training_image:latest',
+        api_version='auto',
+        auto_remove=True,
+        force_pull=False,
+        docker_url='unix://var/run/docker.sock',
+        network_mode='data-pipeline',
+        mount_tmp_dir=False,
+        mounts=[
+            Mount(source=os.path.join(FOLDER_PATH, "ml-predict"), target='/app/ml-predict', type='bind'),
+            Mount(source=os.path.join(FOLDER_PATH, "models"), target='/app/models', type='bind'),
+            Mount(source=os.path.join(FOLDER_PATH, ".env"), target="/app/.env", type="bind")
+        ],
+        command="python /app/ml-predict/ml-predict.py"
     )

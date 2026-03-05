@@ -187,6 +187,19 @@ services:
         - data-pipeline
       profiles: ["ml"] 
 
+  ml_predict:
+      image: ml_training_image:latest
+      container_name: ml_predict_container
+      volumes:
+        - ./ml-predict:/app/ml-predict
+        - ./models:/app/models
+        - ./.env:/app/.env
+      networks:
+        - data-pipeline
+      profiles: ["ml"]
+      command: python /app/ml-predict/ml-predict.py
+
+
   metabase:
     image: metabase/metabase:latest
     container_name: metabase

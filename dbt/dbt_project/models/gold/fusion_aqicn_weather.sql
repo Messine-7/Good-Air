@@ -8,6 +8,7 @@
 
 WITH BASE_DATA AS (
     SELECT 
+        MD5(COALESCE(w.RECORD_ID, '') || '_' || COALESCE(a.RECORD_ID, '')) as RECORD_ID,
         COALESCE(w.CITY_ID, a.CITY_ID) as CITY_ID,
         COALESCE(DATE_TRUNC('hour', w.dt_paris), a.dt_paris) as DT_HOUR,
         w.TEMPERATURE,
@@ -17,6 +18,7 @@ WITH BASE_DATA AS (
         a.IAQI_PM10,
         a.IAQI_PM25,
         a.IAQI_PRESSURE,
+        a.IAQI_NO2,
         a.IAQI_O3,
         a.AQI,
         (a.AQI * 0.7) + 
@@ -69,6 +71,7 @@ POTENTIAL_MATCHES AS (
 )
 
 SELECT 
+    b.RECORD_ID,
     b.CITY_ID,
     b.DT_HOUR,
     b.TEMPERATURE,
@@ -79,6 +82,7 @@ SELECT
     b.IAQI_PM25,
     b.IAQI_PRESSURE,
     b.IAQI_O3,
+    b.IAQI_NO2,
     b.AQI,
     b.CURRENT_HEALTH_RISK_SCORE,
 
@@ -126,5 +130,5 @@ LEFT JOIN POTENTIAL_MATCHES p
     ON b.CITY_ID = p.CITY_ID 
     AND b.DT_HOUR = p.DT_HOUR 
     AND p.proximity_rank = 1
-GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12
+GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14
 ORDER BY CITY_ID, DT_HOUR
