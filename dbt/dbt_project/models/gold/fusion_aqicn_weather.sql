@@ -6,31 +6,65 @@
   )
 }}
 
-WITH BASE_DATA AS (
+WITH RAW_AIR_DATA AS (
+    -- 1. Données temps réel (SILVER FACT)
     SELECT 
-        MD5(COALESCE(w.RECORD_ID, '') || '_' || COALESCE(a.RECORD_ID, '')) as RECORD_ID,
-        COALESCE(w.CITY_ID, a.CITY_ID) as CITY_ID,
-        COALESCE(DATE_TRUNC('hour', w.dt_paris), a.dt_paris) as DT_HOUR,
+        CITY_ID,
+        DATE_TRUNC('hour', dt_paris) as DT_HOUR,
+        RECORD_ID,
+        IAQI_PM10,
+        IAQI_PM25,
+        IAQI_PRESSURE,
+        IAQI_NO2,
+        IAQI_O3,
+        AQI
+    FROM SILVER.FACT_AIR_QUALITY_RECORDS
+
+    UNION ALL
+
+    -- 2. Données Historiques (AQI_HISTORIQUE)
+    -- On aligne les colonnes en mettant NULL là où la donnée météo/gaz manque
+    SELECT 
+        CITY_ID,
+        DATE_TRUNC('hour', DT_PARIS) as DT_HOUR,
+        RECORD_ID,
+        IAQI_PM10,
+        IAQI_PM25,
+        NULL as IAQI_PRESSURE, 
+        NULL as IAQI_NO2,      
+        IAQI_O3,
+        AQI
+    FROM GOOD_AIR.SILVER.AQI_HISTORIQUE
+),
+
+BASE_DATA AS (
+    -- 3. Jointure avec la météo et calcul du score de risque
+    SELECT 
+        MD5(COALESCE(w.RECORD_ID, 'W') || '_' || COALESCE(a.RECORD_ID, 'A')) as RECORD_ID,
+        a.CITY_ID,
+        a.DT_HOUR,
         w.TEMPERATURE,
         w.HUMIDITY,
         w.WIND_SPEED,
-        W.VISIBILITY,
+        w.VISIBILITY,
         a.IAQI_PM10,
         a.IAQI_PM25,
         a.IAQI_PRESSURE,
         a.IAQI_NO2,
         a.IAQI_O3,
         a.AQI,
-        (a.AQI * 0.7) + 
+        -- Calcul du risque (COALESCE pour gérer l'absence de météo dans l'historique)
+        (COALESCE(a.AQI, 0) * 0.7) + 
         (CASE WHEN w.TEMPERATURE < 5 THEN 20 WHEN w.TEMPERATURE > 32 THEN 15 ELSE 0 END) + 
         (CASE WHEN w.HUMIDITY > 80 THEN 10 ELSE 0 END) as CURRENT_HEALTH_RISK_SCORE
-    FROM SILVER.FACT_WEATHER_RECORDS w
-    FULL OUTER JOIN SILVER.FACT_AIR_QUALITY_RECORDS a 
-        ON w.city_id = a.city_id 
-        AND DATE_TRUNC('hour', w.dt_paris) = a.dt_paris
+    FROM RAW_AIR_DATA a
+    LEFT JOIN SILVER.FACT_WEATHER_RECORDS w 
+        ON a.CITY_ID = w.CITY_ID 
+        AND a.DT_HOUR = DATE_TRUNC('hour', w.dt_paris)
 
     {% if is_incremental() %}
-    WHERE w.dt_paris >= (
+    -- On ne traite que les 3 derniers jours pour l'incrémental (ajustable)
+    WHERE a.DT_HOUR >= (
         SELECT COALESCE(DATEADD('hour', -72, MAX(DT_HOUR)), '2020-01-01') 
         FROM {{ this }}
     )
@@ -38,26 +72,22 @@ WITH BASE_DATA AS (
 ),
 
 OFFSETS AS (
-    -- Liste des décalages cibles en heures
-    SELECT column1 as h FROM (VALUES (-48), (-24), (-12), (12), (24), (48))
+    -- Définition des fenêtres temporelles pour les lags
+    SELECT column1 as h FROM (VALUES (-48), (-24), (-12))
 ),
 
 POTENTIAL_MATCHES AS (
+    -- 4. Recherche des correspondances pour les décalages temporels
     SELECT 
         curr.CITY_ID,
         curr.DT_HOUR,
         o.h as target_offset,
         other.CURRENT_HEALTH_RISK_SCORE as match_risk,
         other.TEMPERATURE as match_temp,
-        other.HUMIDITY as match_hum,
-        other.WIND_SPEED as match_wind,
-        other.VISIBILITY as match_visibility,
         other.IAQI_PM10 as match_PM10,
         other.IAQI_PM25 as match_PM25,
-        other.IAQI_PRESSURE as match_pressure,
         other.IAQI_O3 as match_O3,
         other.AQI as match_aqi,
-        ABS(DATEDIFF('minute', other.DT_HOUR, DATEADD('hour', o.h, curr.DT_HOUR))) as gap_minutes,
         ROW_NUMBER() OVER (
             PARTITION BY curr.CITY_ID, curr.DT_HOUR, o.h 
             ORDER BY ABS(DATEDIFF('minute', other.DT_HOUR, DATEADD('hour', o.h, curr.DT_HOUR))) ASC
@@ -70,6 +100,7 @@ POTENTIAL_MATCHES AS (
                              AND DATEADD(hour, o.h + 6, curr.DT_HOUR)
 )
 
+-- 5. Final : Pivot des résultats pour obtenir les colonnes LAG
 SELECT 
     b.RECORD_ID,
     b.CITY_ID,
@@ -86,44 +117,29 @@ SELECT
     b.AQI,
     b.CURRENT_HEALTH_RISK_SCORE,
 
-    -- ==========================================
-    -- LAGS (Le passé : Features)
-    -- ==========================================
-    -- 12H BACK
+    -- LAG 12H
     MAX(CASE WHEN p.target_offset = -12 THEN p.match_risk END) as RISK_SCORE_LAG_12,
     MAX(CASE WHEN p.target_offset = -12 THEN p.match_temp END) as TEMP_LAG_12,
-    MAX(CASE WHEN p.target_offset = -12 THEN p.match_hum END) as HUM_LAG_12,
-    MAX(CASE WHEN p.target_offset = -12 THEN p.match_wind END) as WIND_LAG_12,
-    MAX(CASE WHEN p.target_offset = -12 THEN p.match_visibility END) as VISIBILITY_LAG_12,
     MAX(CASE WHEN p.target_offset = -12 THEN p.match_PM10 END) as PM10_LAG_12,
     MAX(CASE WHEN p.target_offset = -12 THEN p.match_PM25 END) as PM25_LAG_12,
-    MAX(CASE WHEN p.target_offset = -12 THEN p.match_pressure END) as PRESSURE_LAG_12,
     MAX(CASE WHEN p.target_offset = -12 THEN p.match_O3 END) as O3_LAG_12,
     MAX(CASE WHEN p.target_offset = -12 THEN p.match_aqi END) as AQI_LAG_12,
 
-    -- 24H BACK
+    -- LAG 24H
     MAX(CASE WHEN p.target_offset = -24 THEN p.match_risk END) as RISK_SCORE_LAG_24,
     MAX(CASE WHEN p.target_offset = -24 THEN p.match_temp END) as TEMP_LAG_24,
-    MAX(CASE WHEN p.target_offset = -24 THEN p.match_hum END) as HUM_LAG_24,
-    MAX(CASE WHEN p.target_offset = -24 THEN p.match_wind END) as WIND_LAG_24,
-    MAX(CASE WHEN p.target_offset = -24 THEN p.match_visibility END) as VISIBILITY_LAG_24,
     MAX(CASE WHEN p.target_offset = -24 THEN p.match_PM10 END) as PM10_LAG_24,
     MAX(CASE WHEN p.target_offset = -24 THEN p.match_PM25 END) as PM25_LAG_24,
-    MAX(CASE WHEN p.target_offset = -24 THEN p.match_pressure END) as PRESSURE_LAG_24,
     MAX(CASE WHEN p.target_offset = -24 THEN p.match_O3 END) as O3_LAG_24,
     MAX(CASE WHEN p.target_offset = -24 THEN p.match_aqi END) as AQI_LAG_24,
 
-    -- 48H BACK
+    -- LAG 48H
     MAX(CASE WHEN p.target_offset = -48 THEN p.match_risk END) as RISK_SCORE_LAG_48,
     MAX(CASE WHEN p.target_offset = -48 THEN p.match_temp END) as TEMP_LAG_48,
-    MAX(CASE WHEN p.target_offset = -48 THEN p.match_hum END) as HUM_LAG_48,
-    MAX(CASE WHEN p.target_offset = -48 THEN p.match_wind END) as WIND_LAG_48,
-    MAX(CASE WHEN p.target_offset = -48 THEN p.match_visibility END) as VISIBILITY_LAG_48,
     MAX(CASE WHEN p.target_offset = -48 THEN p.match_PM10 END) as PM10_LAG_48,
     MAX(CASE WHEN p.target_offset = -48 THEN p.match_PM25 END) as PM25_LAG_48,
-    MAX(CASE WHEN p.target_offset = -48 THEN p.match_pressure END) as PRESSURE_LAG_48,
-    MAX(CASE WHEN p.target_offset = -24 THEN p.match_O3 END) as O3_LAG_48,
-    MAX(CASE WHEN p.target_offset = -48 THEN p.match_aqi END) as AQI_LAG_48,
+    MAX(CASE WHEN p.target_offset = -48 THEN p.match_O3 END) as O3_LAG_48,
+    MAX(CASE WHEN p.target_offset = -48 THEN p.match_aqi END) as AQI_LAG_48
 
 FROM BASE_DATA b
 LEFT JOIN POTENTIAL_MATCHES p 

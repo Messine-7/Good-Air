@@ -22,12 +22,13 @@ from datetime import datetime
 # %%
 # Chargement des variables
 load_dotenv('/app/.env')
+#load_dotenv("../.env")
 
 # Connexion
 conn = snowflake.connector.connect(
-    user=os.getenv("SNOWFLAKE_USER"),
-    password=os.getenv("SNOWFLAKE_PASSWORD"),
-    account=os.getenv("SNOWFLAKE_ACCOUNT"),
+    user=os.getenv("USER_SNOWFLAKE"),
+    password=os.getenv("PASSWORD_SNOWFLAKE"),
+    account=os.getenv("ACOUNT_SNOWFLAKE"),
     warehouse="COMPUTE_WH",
     database="GOOD_AIR",
     schema="SILVER",
@@ -158,7 +159,7 @@ df_results = pd.DataFrame.from_dict(performance_log, orient='index').reset_index
 df_results.columns = ['MODEL_NAME', 'MAE', 'RMSE', 'R2']
 
 # Ajout des métadonnées de tracking
-df_results['TRAINING_DATE'] = datetime.now()
+df_results['TRAINING_DATE'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 df_results['IS_BEST'] = df_results['MODEL_NAME'] == best_model_name
 
 # Mise en forme pour Snowflake (Majuscules)
@@ -167,4 +168,46 @@ df_results.columns = [col.upper() for col in df_results.columns]
 print("\n📊 Tableau de performance prêt pour Snowflake :")
 print(df_results.to_string(index=False))
 
+# ============================================================
+# 6. SAUVEGARDE DES PERFORMANCES DANS SNOWFLAKE
+# ============================================================
+print("⏳ Tentative de préparation des données pour Snowflake...")
+
+# DEBUG : Vérifions si le DataFrame contient bien des données
+print(f"DEBUG : Nombre de lignes dans df_results : {len(df_results)}")
+
+if not df_results.empty:
+    data_to_insert = [
+        (
+            row['MODEL_NAME'], 
+            float(row['MAE']), 
+            float(row['RMSE']), 
+            float(row['R2']), 
+            str(row['TRAINING_DATE']), 
+            row['IS_BEST'] # Snowflake accepte True/False directement
+        ) 
+        for _, row in df_results.iterrows()
+    ]
+    
+    print(f"DEBUG : {len(data_to_insert)} tuples préparés pour l'insertion.")
+
+    cursor = conn.cursor()
+    try:
+        insert_query = """
+        INSERT INTO GOOD_AIR.LOGS.ML_MODEL_PERFORMANCE
+        (MODEL_NAME, MAE, RMSE, R2, TRAINING_DATE, IS_BEST)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        cursor.executemany(insert_query, data_to_insert)
+        conn.commit()
+        print("✅ Données insérées avec succès dans Snowflake.")
+    except Exception as e:
+        print(f"❌ CRITICAL ERROR lors de l'insertion : {e}")
+        conn.rollback()
+    finally:
+        cursor.close()
+else:
+    print("⚠️ Attention : df_results est vide, rien à insérer.")
+
+conn.close()
 
