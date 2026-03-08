@@ -241,10 +241,10 @@ with DAG(
         mount_tmp_dir=False,
         # On monte le volume pour récupérer le fichier .joblib
         mounts=[
+            Mount(source=os.path.join(FOLDER_PATH, "ml/ml-train.py"), target='/app/ml-train.py', type='bind'),
             Mount(source=os.path.join(FOLDER_PATH, "models"), target='/app/models', type='bind'),
             Mount(source=os.path.join(FOLDER_PATH, ".env"), target="/app/.env", type="bind")
         ],
-        command="python /app/ml-train.py"
     )
 
 # ============================================================
