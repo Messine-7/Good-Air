@@ -4,3 +4,4 @@ venv
 etl/downloads
 /dbt/profiles.yml
 /historique_AQI
+/ml/models

@@ -69,6 +69,10 @@ BASE_DATA AS (
         FROM {{ this }}
     )
     {% endif %}
+    QUALIFY ROW_NUMBER() OVER (
+        PARTITION BY a.CITY_ID, a.DT_HOUR 
+        ORDER BY a.RECORD_ID DESC
+    ) = 1
 ),
 
 OFFSETS AS (
