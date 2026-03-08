@@ -221,7 +221,7 @@ with DAG(
 # ============================================================
 
 with DAG(
-    'train_air_quality_model',
+    'ml_train_model',
     default_args=default_args,
     description='Réentraînement bimensuel du modèle AQI',
     schedule_interval=timedelta(days=14), # Toutes les 2 semaines
